@@ -1,3 +1,27 @@
+/* ---------------------------------------------------------------------------
+MIT License
+
+Copyright (c) 2021 Imre Korf
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+--------------------------------------------------------------------------- */
+
 #include <cmath>
 #include "Vec.h"
 #include <iostream>
@@ -20,6 +44,7 @@ public:
 	Vec<H, T> GetColumn(const unsigned int i) const;
 	void SetRow(const unsigned int i, const Vec<W, T> V);
 	void SetColumn(const unsigned int i, const Vec<H, T> V);
+	MatBase<H, W, T> Transpose(void) const;
 
 	template<int W2, typename N> 		MatBase<H, W2, T>& operator*=(const MatBase<W, W2, N> &B);		// Matrix multiplication
 	template<typename N>		 		MatBase<H, W , T>& operator*=(const MatBase<H, W , N> &B);		// Matrix multiplication 
@@ -102,18 +127,28 @@ Vec<H, T> MatBase<H, W, T>::GetColumn(const unsigned int i) const{
 	return C;
 }
 
-//* Returns the row at position i
+//* Sets the row at position i
 template<unsigned int H, unsigned int W, typename T>
 void MatBase<H, W, T>::SetRow(const unsigned int i, const Vec<W, T> V){
 	(*this)[i] = V;
 }
 
-//* Returns the column at position i
+//* Sets the column at position i
 template<unsigned int H, unsigned int W, typename T>
 void MatBase<H, W, T>::SetColumn(const unsigned int i, const Vec<H, T> V){
 	for(int j = 0; j < H; (*this)[j][i] = V[j], j++){}
 }
 
+//Math
+//* Transposes the matrix
+template<unsigned H, unsigned int W, typename T>
+MatBase<H, W, T> MatBase<H, W, T>::Transpose(void) const{
+	Mat<W, H, T> Mt;
+	for(unsigned int i = 0; i < H; i++){
+		Mt.SetRow(i, this->GetColumn(i));
+	}
+	return Mt;
+}
 
 //! Operator overloads
 
@@ -259,13 +294,15 @@ public:
 	template<int W2, typename N> 		Mat<H, W2, T>& operator*=(const Mat<W, W2, N> &B) 		{return (MatBase<H, W, T>)(*this) *= (MatBase<W, W2, N>)B;} // Matrix multiplication
 	template<typename N>		 		Mat<H, W , T>& operator*=(const Mat<H, W , N> &B) 		{return (MatBase<H, W, T>)(*this) *= (MatBase<H, W , N>)B;}	// Matrix multiplication
 	template<int W2, typename N> const	Mat<H, W2, T>  operator* (const Mat<W, W2, N> &B) const {return (MatBase<H, W, T>)(*this) *  (MatBase<W, W2, N>)B;}	// Matrix multiplication
-	template<typename N> 		const	Mat<H, W , T>  operator* (const Mat<H, W , N> &B) const {return (MatBase<H, W, T>)(*this) *  (MatBase<H, W , N>)B;}	// Matrix multiplication
+	template<typename N> 		 const	Mat<H, W , T>  operator* (const Mat<H, W , N> &B) const {return (MatBase<H, W, T>)(*this) *  (MatBase<H, W , N>)B;}	// Matrix multiplication
 	template<typename N>		 		Mat<H, W , T>& operator*=(const N &r)					{return (MatBase<H, W, T>)(*this) *= r;}					// Scalar multiplication
 	template<typename N>		 const	Mat<H, W , T>  operator* (const N &r) 			  const {return (MatBase<H, W, T>)(*this) *  r;}					// Scalar multiplication
 	template<typename N>		 		Mat<H, W , T>& operator+=(const Mat<H, W , N> &B)		{return (MatBase<H, W, T>)(*this) += (MatBase<H, W , N>)B;} // Matrix addition
 	template<typename N>		 const  Mat<H, W , T>  operator+ (const Mat<H, W , N> &B) const	{return (MatBase<H, W, T>)(*this) +  (MatBase<H, W , N>)B;}	// Matrix addition
 	template<typename N>		 		Mat<H, W , T>& operator-=(const Mat<H, W , N> &B)		{return (MatBase<H, W, T>)(*this) -= (MatBase<H, W , N>)B;}	// Matrix addition
 	template<typename N>		 const  Mat<H, W , T>  operator- (const Mat<H, W , N> &B) const	{return (MatBase<H, W, T>)(*this) -  (MatBase<H, W , N>)B;}	// Matrix addition
+
+										Mat<H, W , T>  Transpose(void) 					  const {return (MatBase<H, W, T>)(*this).Transpose();}
 
 	template<typename N> 		 const 	Vec<H, T> 	   operator* (const Vec<W, N> &V) 	  const	{return (MatBase<H, W, T>)(*this) * V;}	// Vector matrix multiplication
 	template<typename Cast> 		   				   operator Mat<H, W, Cast> () 	  	  const {return (Mat<H, W, Cast>)((MatBase<H, W, T>)(*this));}
@@ -283,16 +320,16 @@ public:
 
 	template<typename N> 		Mat<H, H, T>& operator*=(const Mat<H, H, N> &B) 		{return (MatBase<H, H, T>)(*this) *= (MatBase<H, H, N>)B;} 	// Matrix multiplication
 	template<typename N> const	Mat<H, H, T>  operator* (const Mat<H, H, N> &B) const 	{return (MatBase<H, H, T>)(*this) *  (MatBase<H, H, N>)B;} 	// Matrix multiplication
-	template<typename N>		Mat<H, H, T>& operator*=(const N &r)					{return (MatBase<H, H, T>)(*this) *= r;}						// Scalar multiplication
-	template<typename N> const	Mat<H, H, T>  operator* (const N &r) 			const 	{return (MatBase<H, H, T>)(*this) *  r;}						// Scalar multiplication
+	template<typename N>		Mat<H, H, T>& operator*=(const N &r)					{return (MatBase<H, H, T>)(*this) *= r;}					// Scalar multiplication
+	template<typename N> const	Mat<H, H, T>  operator* (const N &r) 			const 	{return (MatBase<H, H, T>)(*this) *  r;}					// Scalar multiplication
 	template<typename N> 		Mat<H, H, T>& operator+=(const Mat<H, H, N> &B)			{return (MatBase<H, H, T>)(*this) += (MatBase<H, H, N>)B;}	// Matrix addition
 	template<typename N> const  Mat<H, H, T>  operator+ (const Mat<H, H, N> &B) const	{return (MatBase<H, H, T>)(*this) +  (MatBase<H, H, N>)B;}	// Matrix addition
 	template<typename N> 		Mat<H, H, T>& operator-=(const Mat<H, H, N> &B)			{return (MatBase<H, H, T>)(*this) -= (MatBase<H, H, N>)B;}	// Matrix addition
 	template<typename N> const  Mat<H, H, T>  operator- (const Mat<H, H, N> &B) const	{return (MatBase<H, H, T>)(*this) -  (MatBase<H, H, N>)B;}	// Matrix addition
 	template<typename Cast> 		   		  operator Mat<H, H, Cast> () 	  	const 	{return (Mat<H, H, Cast>)((MatBase<H, H, T>)(*this));}
-	template<typename N> const 	Vec<H, T> 	  operator* (const Vec<H, N> &V) 	const	{return (MatBase<H, H, T>)(*this) * V;}	// Vector matrix multiplication
+	template<typename N> const 	Vec<H, T> 	  operator* (const Vec<H, N> &V) 	const	{return (MatBase<H, H, T>)(*this) * V;}						// Vector matrix multiplication
 
-	Mat<H, H, T> Transpose(void) const;
+								Mat<H, H, T>  Transpose(void) 					const 	{return Mat<1, 1, T>(*this);}
 	Mat<H-1, H-1, T> SubMatrix(const unsigned int i, const unsigned int j) const;
 	Mat<H, H, T> CoFactorMatrix(void) const;
 	Mat<H, H, T> Adjoint(void) const;
@@ -303,15 +340,6 @@ public:
 };
 
 //! Math
-//* Transposes the matrix
-template<unsigned H, typename T>
-Mat<H, H, T> Mat<H, H, T>::Transpose(void) const{
-	Mat<H, H, T> Mt;
-	for(unsigned int i = 0; i < H; i++){
-		Mt.SetRow(i, this->GetColumn(i));
-	}
-	return Mt;
-}
 
 //* Get Submatrix of Matrix
 template<unsigned H, typename T>
@@ -413,6 +441,7 @@ public:
 	template<typename N> const  Mat<1, 1, T>  operator+ (const Mat<1, 1, N> &B) const	{return (MatBase<1, 1, T>)(*this) +  (MatBase<1, 1, N>)B;}	// Matrix addition
 	template<typename N> 		Mat<1, 1, T>& operator-=(const Mat<1, 1, N> &B)			{return (MatBase<1, 1, T>)(*this) -= (MatBase<1, 1, N>)B;}	// Matrix addition
 	template<typename N> const  Mat<1, 1, T>  operator- (const Mat<1, 1, N> &B) const	{return (MatBase<1, 1, T>)(*this) -  (MatBase<1, 1, N>)B;}	// Matrix addition
+								Mat<1, 1, T>  Transpose(void) 					const 	{return (MatBase<1, 1, T>)(*this).Transpose();}
 
 	Mat<1, 1, T> SubMatrix(const unsigned int i, const unsigned int j) const;
 	double Determinant(void) const;
