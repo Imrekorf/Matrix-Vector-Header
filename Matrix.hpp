@@ -23,7 +23,7 @@ SOFTWARE.
 --------------------------------------------------------------------------- */
 
 #include <cmath>
-#include "Vec.h"
+#include "Vec.hpp"
 #include <iostream>
 
 template<unsigned int H, unsigned int W = H, typename T = double>
