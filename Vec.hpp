@@ -31,6 +31,8 @@ SOFTWARE.
 
 #define PI 3.14159265
 
+namespace MVH {
+
 /**
  * @brief Specifies if the angle is radian or degrees
  */
@@ -630,6 +632,8 @@ const Vec<S, T> Vec<S, T>::getNormalized() const{
 	Vec<S, T> r(*this);
 	r.normalize();
 	return r;
+}
+
 }
 
 #undef PI 

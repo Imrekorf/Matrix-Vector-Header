@@ -26,6 +26,8 @@ SOFTWARE.
 #include "Vec.hpp"
 #include <iostream>
 
+namespace MVH {
+
 /**
  * @brief Base matrix class
  * 
@@ -709,4 +711,6 @@ Mat<1, 1, T> Mat<1, 1, T>::SubMatrix(const unsigned int i, const unsigned int j)
 template<typename T>
 double Mat<1, 1, T>::Determinant(void) const {
 	return (*this)[0][0];
+}
+
 }
