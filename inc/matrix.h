@@ -143,7 +143,7 @@ void MatBase<H, W, T>::SetColumn(const unsigned int i, const Vec<H, T> V){
 //* Transposes the matrix
 template<unsigned H, unsigned int W, typename T>
 MatBase<H, W, T> MatBase<H, W, T>::Transpose(void) const{
-	Mat<W, H, T> Mt;
+	MatBase<W, H, T> Mt;
 	for(unsigned int i = 0; i < H; i++){
 		Mt.SetRow(i, this->GetColumn(i));
 	}
