@@ -1,0 +1,88 @@
+.TH "Mat< H, W, T >" 3 "Fri Mar 11 2022" "Version V2.0" "MatrixVectorHeader" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Mat< H, W, T > \- Matrix class for a non-square matrix\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Matrix\&.hpp>\fP
+.PP
+Inherits \fBMatBase< H, H, double >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMat\fP (const \fBMat\fP< H, W, T > &m1)"
+.br
+.ti -1c
+.RI "\fBMat\fP (const \fBMatBase\fP< H, W, T > &m1)"
+.br
+.ti -1c
+.RI "\fBMat\fP (std::initializer_list< std::initializer_list< T > > v)"
+.br
+.ti -1c
+.RI "template<int W2, typename N > \fBMat\fP< H, W2, T > & \fBoperator*=\fP (const \fBMat\fP< W, W2, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, W, T > & \fBoperator*=\fP (const \fBMat\fP< H, W, N > &B)"
+.br
+.ti -1c
+.RI "template<int W2, typename N > const \fBMat\fP< H, W2, T > \fBoperator*\fP (const \fBMat\fP< W, W2, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, W, T > \fBoperator*\fP (const \fBMat\fP< H, W, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, W, T > & \fBoperator*=\fP (const N &r)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, W, T > \fBoperator*\fP (const N &r) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, W, T > & \fBoperator+=\fP (const \fBMat\fP< H, W, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, W, T > \fBoperator+\fP (const \fBMat\fP< H, W, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, W, T > & \fBoperator\-=\fP (const \fBMat\fP< H, W, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, W, T > \fBoperator\-\fP (const \fBMat\fP< H, W, N > &B) const"
+.br
+.ti -1c
+.RI "\fBMat\fP< H, W, T > \fBTranspose\fP (void) const"
+.br
+.ti -1c
+.RI "template<typename N > const \fBVec\fP< H, T > \fBoperator*\fP (const \fBVec\fP< W, N > &V) const"
+.br
+.ti -1c
+.RI "template<typename Cast > \fBoperator Mat< H, W, Cast >\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int H, unsigned int W = H, typename T = double>
+.br
+class Mat< H, W, T >"Matrix class for a non-square matrix\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height of the matrix 
+.br
+\fIW\fP width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for MatrixVectorHeader from the source code\&.

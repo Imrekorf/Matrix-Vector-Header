@@ -1,0 +1,775 @@
+.TH "Vec< S, T >" 3 "Fri Mar 11 2022" "Version V2.0" "MatrixVectorHeader" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Vec< S, T > \- Class for vector arithmatic and logic\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Vec\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBVec\fP (const T X, const T Y=0, const T Z=0, const T W=0)"
+.br
+.RI "Construct a new \fBVec\fP object\&. "
+.ti -1c
+.RI "\fBVec\fP (std::initializer_list< T > v)"
+.br
+.RI "Construct a new \fBVec\fP object based on an initializer list\&. "
+.ti -1c
+.RI "\fBVec\fP (const \fBVec\fP< S, T > &v)"
+.br
+.RI "Construct a new \fBVec\fP object by copying v into the vector object\&. "
+.ti -1c
+.RI "template<typename N  = double> const \fBVec\fP< S, T > \fBoperator+\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Adds vector U to the vector object V + U\&. "
+.ti -1c
+.RI "template<typename N  = double> \fBVec\fP< S, T > & \fBoperator+=\fP (const \fBVec\fP< S, N > &U)"
+.br
+.RI "addition "
+.ti -1c
+.RI "template<typename N  = double> const \fBVec\fP< S, T > \fBoperator\-\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Subtracts vector U from the vector object V - U\&. "
+.ti -1c
+.RI "template<typename N  = double> \fBVec\fP< S, T > & \fBoperator\-=\fP (const \fBVec\fP< S, N > &U)"
+.br
+.RI "subtraction "
+.ti -1c
+.RI "template<typename N  = double> double \fBoperator*\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Calculates the dot product between the vector object and vector U A * U = V\&. "
+.ti -1c
+.RI "template<typename N  = double> const \fBVec\fP< S, T > \fBoperator*\fP (const N R) const"
+.br
+.RI "Calculates the scalar of the vector object A * r = U\&. "
+.ti -1c
+.RI "template<typename N  = double> const \fBVec\fP< S, T > \fBoperator/\fP (const N R) const"
+.br
+.RI "Calculates the scalar of the vector object vector A / r = U\&. "
+.ti -1c
+.RI "template<typename N  = double> \fBVec\fP< S, T > & \fBoperator*=\fP (const N R)"
+.br
+.RI "multiplication "
+.ti -1c
+.RI "template<typename N  = double> \fBVec\fP< S, T > & \fBoperator/=\fP (const N R)"
+.br
+.RI "Calculates the scalar of the vector object inplace\&. A / r = U\&. "
+.ti -1c
+.RI "template<int S2, typename N  = double> \fBVec\fP< S, T > & \fBoperator=\fP (const \fBVec\fP< S2, N > &U)"
+.br
+.RI "Code based operators\&. "
+.ti -1c
+.RI "template<typename N  = double> bool \fBoperator==\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "logical "
+.ti -1c
+.RI "template<typename N  = double> bool \fBoperator!=\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Checks if the vector object and vector U are not equal\&. "
+.ti -1c
+.RI "template<typename Cast > \fBoperator Vec< S, Cast >\fP () const"
+.br
+.RI "Casts the vector object from type T to type Cast\&. "
+.ti -1c
+.RI "T & \fBoperator[]\fP (int i)"
+.br
+.RI "Sets the value of element i\&. "
+.ti -1c
+.RI "T \fBoperator[]\fP (int i) const"
+.br
+.RI "Gets the value of element i\&. "
+.ti -1c
+.RI "double \fBlength\fP () const"
+.br
+.RI "Calculates the length of the vector object √(V[i]^2 + V[i+1]^2 + \&.\&.\&.) "
+.ti -1c
+.RI "double \fBlengthsquared\fP () const"
+.br
+.RI "mathematical functions "
+.ti -1c
+.RI "template<typename N  = double> double \fBdistance\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Calculates the distance between the vector object and vector U\&. ||V - U||\&. "
+.ti -1c
+.RI "template<typename N  = double> \fBVec\fP< S, T > \fBcrossproduct\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Calculates the cross product between the vector object and vector U\&. Supported vector sizes are between 2 and 3\&. A x B\&. "
+.ti -1c
+.RI "template<AngleType degrees = Degrees, typename N  = double> double \fBangle\fP (const \fBVec\fP< S, N > &U) const"
+.br
+.RI "Calculates the angle between two vector objects acos((V • U) / ||V * U||) "
+.ti -1c
+.RI "\fBVec\fP< S, T > & \fBnormalize\fP ()"
+.br
+.RI "Normalizes the vector object inplace\&. "
+.ti -1c
+.RI "const \fBVec\fP< S, T > \fBgetNormalized\fP () const"
+.br
+.RI "Creates a new vector object and normalizes it\&. "
+.ti -1c
+.RI "\fBVec\fP< 3, T > & \fBrotate\fP (const \fBQuaternion\fP &q)"
+.br
+.RI "Rotates the vector object inplace by the quaternion vector\&. "
+.ti -1c
+.RI "\fBVec\fP< 3, T > \fBgetRotated\fP (const \fBQuaternion\fP &q) const"
+.br
+.RI "Rotates a copy of the vector object by quaternion and returns it\&. "
+.ti -1c
+.RI "void \fBprint\fP ()"
+.br
+.RI "prints vector values "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      T \fBx\fP"
+.br
+.ti -1c
+.RI "      T \fBy\fP"
+.br
+.ti -1c
+.RI "      T \fBz\fP"
+.br
+.ti -1c
+.RI "      T \fBw\fP"
+.br
+.ti -1c
+.RI "   } "
+.br
+.ti -1c
+.RI "   T \fBVarr\fP [S]"
+.br
+.ti -1c
+.RI "}; "
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<int S, typename T = double>
+.br
+class Vec< S, T >"Class for vector arithmatic and logic\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP The size of the vector 
+.br
+\fIT\fP The datatype of the vector 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<int S, typename T  = double> \fBVec\fP< S, T >::\fBVec\fP (const T X, const T Y = \fC0\fP, const T Z = \fC0\fP, const T W = \fC0\fP)\fC [inline]\fP"
+
+.PP
+Construct a new \fBVec\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIX\fP The value for X, default 0 
+.br
+\fIY\fP The value for Y, default 0 
+.br
+\fIZ\fP The value for Z, default 0 
+.br
+\fIW\fP The value for W, default 0 
+.RE
+.PP
+
+.SS "template<int S, typename T  = double> \fBVec\fP< S, T >::\fBVec\fP (std::initializer_list< T > v)\fC [inline]\fP"
+
+.PP
+Construct a new \fBVec\fP object based on an initializer list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP the list of values 
+.RE
+.PP
+
+.SS "template<int S, typename T  = double> \fBVec\fP< S, T >::\fBVec\fP (const \fBVec\fP< S, T > & v)\fC [inline]\fP"
+
+.PP
+Construct a new \fBVec\fP object by copying v into the vector object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP the vector object 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<int S, typename T > template<AngleType degrees, typename N > double \fBVec\fP< S, T >::angle (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Calculates the angle between two vector objects acos((V • U) / ||V * U||) 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype vector U 
+.br
+\fIdegrees\fP specifies if the returned value should be in radians or degrees\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to calculate the angle between 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > \fBVec\fP< S, T > \fBVec\fP< S, T >::crossproduct (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Calculates the cross product between the vector object and vector U\&. Supported vector sizes are between 2 and 3\&. A x B\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to calculate the cross product with 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T> the new vector containing the cross product 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > double \fBVec\fP< S, T >::distance (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Calculates the distance between the vector object and vector U\&. ||V - U||\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP 2nd vector to calculate distance to 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the distance between the two vectors\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > const \fBVec\fP< S, T > \fBVec\fP< S, T >::getNormalized"
+
+.PP
+Creates a new vector object and normalizes it\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP The size of the vector 
+.br
+\fIT\fP The datatype of the vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+const Vec<S, T> The unit vector 
+.RE
+.PP
+
+.SS "template<int S, typename T > \fBVec\fP< 3, T > \fBVec\fP< S, T >::getRotated (const \fBQuaternion\fP & q) const"
+
+.PP
+Rotates a copy of the vector object by quaternion and returns it\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIq\fP the quaternion rotation vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<3, T> the rotated vector 
+.RE
+.PP
+
+.SS "template<int S, typename T > double \fBVec\fP< S, T >::length"
+
+.PP
+Calculates the length of the vector object √(V[i]^2 + V[i+1]^2 + \&.\&.\&.) 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the length of the vector 
+.RE
+.PP
+
+.SS "template<int S, typename T > double \fBVec\fP< S, T >::lengthsquared"
+
+.PP
+mathematical functions Calculates the length of the vector object but does not calculate the root of it\&. V[i]^2 + V[i+1]^2 + \&.\&.\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the length of the vector squared 
+.RE
+.PP
+
+.SS "template<int S, typename T > \fBVec\fP< S, T > & \fBVec\fP< S, T >::normalize"
+
+.PP
+Normalizes the vector object inplace\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the normalized vector object\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename Cast > \fBVec\fP< S, T >::operator \fBVec\fP< S, Cast >"
+
+.PP
+Casts the vector object from type T to type Cast\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fICast\fP the new datatype of the vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, Cast> The new vector containing the casted values\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > bool \fBVec\fP< S, T >::operator!= (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Checks if the vector object and vector U are not equal\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to compare to 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the vectors are not equal 
+.PP
+false if the vectors are equal 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > const \fBVec\fP< S, T > \fBVec\fP< S, T >::operator* (const N r) const"
+
+.PP
+Calculates the scalar of the vector object A * r = U\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP the scalar value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+const Vec<S, T> scaled vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > double \fBVec\fP< S, T >::operator* (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Calculates the dot product between the vector object and vector U A * U = V\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to calculate the dot product between 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > \fBVec\fP< S, T > & \fBVec\fP< S, T >::operator*= (const N r)"
+
+.PP
+multiplication Calculates the scalar of the vector object inplace A * r = U 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP the scalar value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the scaled vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > const \fBVec\fP< S, T > \fBVec\fP< S, T >::operator+ (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Adds vector U to the vector object V + U\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to add from 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+const Vec<S, T> The added vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > \fBVec\fP< S, T > & \fBVec\fP< S, T >::operator+= (const \fBVec\fP< S, N > & U)"
+
+.PP
+addition Adds vector U to the vector object V + U 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to add from 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the added vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > const \fBVec\fP< S, T > \fBVec\fP< S, T >::operator\- (const \fBVec\fP< S, N > & U) const"
+
+.PP
+Subtracts vector U from the vector object V - U\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to substract from 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+const Vec<S, T> The substracted vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > \fBVec\fP< S, T > & \fBVec\fP< S, T >::operator\-= (const \fBVec\fP< S, N > & U)"
+
+.PP
+subtraction Subtracts vector U from the vector object V - U 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to substract from 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the substracted vector object 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > const \fBVec\fP< S, T > \fBVec\fP< S, T >::operator/ (const N r) const"
+
+.PP
+Calculates the scalar of the vector object vector A / r = U\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP the scalar value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+const Vec<S, T> the scaled vector\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > \fBVec\fP< S, T > & \fBVec\fP< S, T >::operator/= (const N r)"
+
+.PP
+Calculates the scalar of the vector object inplace\&. A / r = U\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP the scalar value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the scaled vector\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<int S2, typename N > \fBVec\fP< S, T > & \fBVec\fP< S, T >::operator= (const \fBVec\fP< S2, N > & U)"
+
+.PP
+Code based operators\&. Copies vector U of length S2 to the vector object of size S The smallest vector defines how many variables get copied\&. Starts from variable X\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIS2\fP the size of vector U 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the vector to copy from 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<S, T>& reference to the assigned vector object\&. 
+.RE
+.PP
+
+.SS "template<int S, typename T > template<typename N > bool \fBVec\fP< S, T >::operator== (const \fBVec\fP< S, N > & U) const"
+
+.PP
+logical Checks if this vecgtor and vector U are equal
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.br
+\fIN\fP the datatype of vector U 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIU\fP the 2nd vector to compare to 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the vectors are equal 
+.PP
+false if the vectors are not equal 
+.RE
+.PP
+
+.SS "template<int S, typename T  = double> T & \fBVec\fP< S, T >::operator[] (int i)\fC [inline]\fP"
+
+.PP
+Sets the value of element i\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP the index of the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+T reference to the value of the element 
+.RE
+.PP
+
+.SS "template<int S, typename T  = double> T \fBVec\fP< S, T >::operator[] (int i) const\fC [inline]\fP"
+
+.PP
+Gets the value of element i\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP the index of the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+T the value of the element 
+.RE
+.PP
+
+.SS "template<int S, typename T > \fBVec\fP< 3, T > & \fBVec\fP< S, T >::rotate (const \fBQuaternion\fP & q)"
+
+.PP
+Rotates the vector object inplace by the quaternion vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIS\fP the size of the vector 
+.br
+\fIT\fP the datatype of the vector 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIq\fP the quaternion rotation vector 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Vec<3, T>& reference to the rotated vector object\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for MatrixVectorHeader from the source code\&.

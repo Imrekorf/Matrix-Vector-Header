@@ -1,0 +1,432 @@
+\hypertarget{_matrix_8hpp_source}{}\doxysection{Matrix.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{2 \textcolor{comment}{MIT License}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{Copyright (c) 2021 Imre Korf}}
+\DoxyCodeLine{5 \textcolor{comment}{}}
+\DoxyCodeLine{6 \textcolor{comment}{Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{7 \textcolor{comment}{of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{8 \textcolor{comment}{in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{9 \textcolor{comment}{to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{10 \textcolor{comment}{copies of the Software, and to permit persons to whom the Software is}}
+\DoxyCodeLine{11 \textcolor{comment}{furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{12 \textcolor{comment}{}}
+\DoxyCodeLine{13 \textcolor{comment}{The above copyright notice and this permission notice shall be included in all}}
+\DoxyCodeLine{14 \textcolor{comment}{copies or substantial portions of the Software.}}
+\DoxyCodeLine{15 \textcolor{comment}{}}
+\DoxyCodeLine{16 \textcolor{comment}{THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR}}
+\DoxyCodeLine{17 \textcolor{comment}{IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,}}
+\DoxyCodeLine{18 \textcolor{comment}{FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE}}
+\DoxyCodeLine{19 \textcolor{comment}{AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER}}
+\DoxyCodeLine{20 \textcolor{comment}{LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,}}
+\DoxyCodeLine{21 \textcolor{comment}{OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE}}
+\DoxyCodeLine{22 \textcolor{comment}{SOFTWARE.}}
+\DoxyCodeLine{23 \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ */}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}Vec.hpp"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{36 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W = H, \textcolor{keyword}{typename} T = \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{37 \textcolor{keyword}{class }\mbox{\hyperlink{class_mat_base}{MatBase}} \{}
+\DoxyCodeLine{38 \textcolor{keyword}{private}:}
+\DoxyCodeLine{39     \mbox{\hyperlink{class_vec}{Vec<W, T>}} M[H];}
+\DoxyCodeLine{40 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \mbox{\hyperlink{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}{MatBase}}();}
+\DoxyCodeLine{44     \mbox{\hyperlink{class_mat_base_a6b39a06a0b34dcf57dd3c1bc542e736d}{MatBase}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \&m1);}
+\DoxyCodeLine{45     \mbox{\hyperlink{class_mat_base_a8cf070a88c179c3fb618971ce0d60b93}{MatBase}}(std::initializer\_list<std::initializer\_list<T>> v);}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_mat_base_a262d73eda139f6ccb1ad90264f313511}{\string~MatBase}}();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \mbox{\hyperlink{class_vec}{Vec<W, T>}}\& operator[] (\textcolor{keywordtype}{int} i) \{\textcolor{keywordflow}{return} M[i];\}}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_vec}{Vec<W, T>}} operator[] (\textcolor{keywordtype}{int} i)\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} M[i];\}}
+\DoxyCodeLine{50     \mbox{\hyperlink{class_vec}{Vec<W, T>}} \mbox{\hyperlink{class_mat_base_abd3f105bc51a098a0288988314dee71a}{GetRow}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i) \textcolor{keyword}{const};}
+\DoxyCodeLine{51     \mbox{\hyperlink{class_vec}{Vec<H, T>}} \mbox{\hyperlink{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}{GetColumn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i) \textcolor{keyword}{const};}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}{SetRow}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<W, T>}} V);}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mat_base_afe8d16f4364e8ce627d1e50f538bca8a}{SetColumn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<H, T>}} V);}
+\DoxyCodeLine{54     \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \mbox{\hyperlink{class_mat_base_ae398f4a3ea30e65f5027022578522880}{Transpose}}(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}} \&B);      \textcolor{comment}{// Matrix multiplication }}
+\DoxyCodeLine{57     \textcolor{keyword}{template}<\textcolor{keywordtype}{int} W2, \textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_base}{MatBase<H, W2, T>}}  \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{operator* }}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<W, W2, N>}} \&B) \textcolor{keyword}{const};\textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{58     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \textcolor{keyword}{const}   \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}  \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{operator* }}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}} \&B) \textcolor{keyword}{const};\textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{59     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a6ea1a8ba3aa4aa03e449f88bb7127df2}{operator*=}}(\textcolor{keyword}{const} N \&r);                       \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{60     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}  \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{operator* }}(\textcolor{keyword}{const} N \&r)                  \textcolor{keyword}{const};\textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{61     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a6a7af497f942e33075d43fd9ca622fbe}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B);        \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{62     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}  \mbox{\hyperlink{class_mat_base_a913f1916749a4a42d80e7c21bc313f49}{operator+ }}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)  \textcolor{keyword}{const};\textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{63     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a2391380d8e303de9cf2bdaad10d7f9e5}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B);        \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{64     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}  \mbox{\hyperlink{class_mat_base_a8fb2528e5ebbd75f81f472a7edab4377}{operator-\/ }}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)  \textcolor{keyword}{const};\textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_vec}{Vec<H, T>}}         \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{operator* }}(\textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<W, N>}} \&V)          \textcolor{keyword}{const};\textcolor{comment}{// Vector matrix multiplication}}
+\DoxyCodeLine{67     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Cast>                                \textcolor{keyword}{operator} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, Cast>}} ()         \textcolor{keyword}{const};}
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mat_base_a28a38734a90d3c9d75a7ac8cce97c61f}{print}}()\{}
+\DoxyCodeLine{72         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{73             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < W; j++)\{}
+\DoxyCodeLine{74                 std::cout << (*this)[i][j] << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{75             \}}
+\DoxyCodeLine{76             std::cout << std::endl;}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{90 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{91 \mbox{\hyperlink{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}{MatBase<H, W, T>::MatBase}}() \{}
+\DoxyCodeLine{92     \textcolor{keyword}{static\_assert}(std::is\_arithmetic<T>::value, \textcolor{stringliteral}{"{}Values must be numeric"{}});}
+\DoxyCodeLine{93 \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{103 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{104 \mbox{\hyperlink{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}{MatBase<H, W, T>::MatBase}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \&m1) \{}
+\DoxyCodeLine{105     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{106         (*this)[i] = m1[i];}
+\DoxyCodeLine{107     \}}
+\DoxyCodeLine{108 \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{118 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{119 \mbox{\hyperlink{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}{MatBase<H, W, T>::MatBase}}(std::initializer\_list<std::initializer\_list<T>> v)\{}
+\DoxyCodeLine{120     \textcolor{keyword}{static\_assert}(std::is\_arithmetic<T>::value, \textcolor{stringliteral}{"{}Values must be numeric"{}});}
+\DoxyCodeLine{121     \textcolor{keywordtype}{bool} err = 0;}
+\DoxyCodeLine{122     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size = 0;}
+\DoxyCodeLine{123     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{124         \textcolor{keywordflow}{if}(v.size() != H)\{}
+\DoxyCodeLine{125             size = v.size();}
+\DoxyCodeLine{126             \textcolor{keywordflow}{throw} \textcolor{stringliteral}{"{}Matrix input height does not match templated height\(\backslash\)nMatrix height: "{}};}
+\DoxyCodeLine{127         \}}
+\DoxyCodeLine{128         \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} vi = v.begin(); vi != v.end(); vi++)\{}
+\DoxyCodeLine{129             \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} vj = vi-\/>begin(); vj != vi-\/>end(); vj++)\{}
+\DoxyCodeLine{130                 \textcolor{keywordflow}{if}((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(vj -\/ vi-\/>begin()) >= W)\{}
+\DoxyCodeLine{131                     err = 1;}
+\DoxyCodeLine{132                     size = vi-\/>size();}
+\DoxyCodeLine{133                     \textcolor{keywordflow}{throw} \textcolor{stringliteral}{"{}Matrix input width does not match templated width\(\backslash\)nMatrix Width: "{}};}
+\DoxyCodeLine{134                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{135                 \}}
+\DoxyCodeLine{136                 (*this)[(int)(vi -\/ v.begin())][(\textcolor{keywordtype}{int})(vj -\/ vi-\/>begin())] = *vj;}
+\DoxyCodeLine{137             \}}
+\DoxyCodeLine{138         \}}
+\DoxyCodeLine{139     \} \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* msg) \{}
+\DoxyCodeLine{140         std::cerr << \textcolor{stringliteral}{"{}Error occurred during Matrix constructor: "{}} << std::endl;}
+\DoxyCodeLine{141         std::cerr << msg << (err ? W : H) << \textcolor{stringliteral}{"{} Input Size: "{}} << size << std::endl;}
+\DoxyCodeLine{142     \}}
+\DoxyCodeLine{143 \}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{152 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{153 \mbox{\hyperlink{class_mat_base_a262d73eda139f6ccb1ad90264f313511}{MatBase<H, W, T>::\string~MatBase}}() \{\}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{164 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{165 \mbox{\hyperlink{class_vec}{Vec<W, T>}} \mbox{\hyperlink{class_mat_base_abd3f105bc51a098a0288988314dee71a}{MatBase<H, W, T>::GetRow}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{166     \textcolor{keywordflow}{return} (*\textcolor{keyword}{this})[i];}
+\DoxyCodeLine{167 \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{178 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{179 \mbox{\hyperlink{class_vec}{Vec<H, T>}} \mbox{\hyperlink{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}{MatBase<H, W, T>::GetColumn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{180     \mbox{\hyperlink{class_vec}{Vec<H, T>}} C;}
+\DoxyCodeLine{181     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < H; C[j] = (*this)[j][i], j++)\{\}}
+\DoxyCodeLine{182     \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{183 \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{194 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{195 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}{MatBase<H, W, T>::SetRow}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<W, T>}} V)\{}
+\DoxyCodeLine{196     (*this)[i] = V;}
+\DoxyCodeLine{197 \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{208 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{209 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_mat_base_afe8d16f4364e8ce627d1e50f538bca8a}{MatBase<H, W, T>::SetColumn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<H, T>}} V)\{}
+\DoxyCodeLine{210     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j = 0; j < H; (*this)[j][i] = V[j], j++)\{\}}
+\DoxyCodeLine{211 \}}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{comment}{//Math}}
+\DoxyCodeLine{222 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{223 \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \mbox{\hyperlink{class_mat_base_ae398f4a3ea30e65f5027022578522880}{MatBase<H, W, T>::Transpose}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{224     \mbox{\hyperlink{class_mat_base}{MatBase<W, H, T>}} Mt;}
+\DoxyCodeLine{225     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{226         Mt.\mbox{\hyperlink{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}{SetRow}}(i, this-\/>GetColumn(i));}
+\DoxyCodeLine{227     \}}
+\DoxyCodeLine{228     \textcolor{keywordflow}{return} Mt;}
+\DoxyCodeLine{229 \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{232 }
+\DoxyCodeLine{243 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>    }
+\DoxyCodeLine{244 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>}
+\DoxyCodeLine{245 \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}\& \mbox{\hyperlink{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}{MatBase<H, W, T>::operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\{}
+\DoxyCodeLine{246     \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} C = *\textcolor{keyword}{this} * B;}
+\DoxyCodeLine{247     *\textcolor{keyword}{this} = C;}
+\DoxyCodeLine{248     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{249 \}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 \textcolor{comment}{//* Matrix multiplication}}
+\DoxyCodeLine{264 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{265 \textcolor{keyword}{template}<\textcolor{keywordtype}{int} W2, \textcolor{keyword}{typename} N>        }
+\DoxyCodeLine{266 \textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W2, T>}} \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{MatBase<H, W, T>::operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<W, W2, N>}} \&B)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{267     \mbox{\hyperlink{class_mat_base}{MatBase<H, W2, T>}} C;}
+\DoxyCodeLine{268     \textcolor{comment}{// loops over B's Columns}}
+\DoxyCodeLine{269     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < W2; i++)\{}
+\DoxyCodeLine{270         \mbox{\hyperlink{class_vec}{Vec<W, T>}} ColB = B.\mbox{\hyperlink{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}{GetColumn}}(i);}
+\DoxyCodeLine{271         \textcolor{comment}{// copy value to new column}}
+\DoxyCodeLine{272         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < H; j++)\{}
+\DoxyCodeLine{273             C[j][i] = (*\textcolor{keyword}{this} * ColB)[j];}
+\DoxyCodeLine{274         \}}
+\DoxyCodeLine{275     \}}
+\DoxyCodeLine{276     \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{277 \}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{//* Matrix multiplication}}
+\DoxyCodeLine{290 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>    }
+\DoxyCodeLine{291 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>    }
+\DoxyCodeLine{292 \textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{MatBase<H, W, T>::operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{293     \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} C;}
+\DoxyCodeLine{294     \textcolor{comment}{// loops over B's Columns}}
+\DoxyCodeLine{295     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < W; i++)\{}
+\DoxyCodeLine{296         \mbox{\hyperlink{class_vec}{Vec<W, T>}} ColB = B.\mbox{\hyperlink{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}{GetColumn}}(i);}
+\DoxyCodeLine{297         \textcolor{comment}{// copy value to new column}}
+\DoxyCodeLine{298         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < H; j++)\{}
+\DoxyCodeLine{299             C[j][i] = (*\textcolor{keyword}{this} * ColB)[j];}
+\DoxyCodeLine{300         \}}
+\DoxyCodeLine{301     \}}
+\DoxyCodeLine{302     \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{303 \}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{315 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{316 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>}
+\DoxyCodeLine{317 \textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<H, T>}} \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{MatBase<H, W, T>::operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<W, N>}} \&V)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{318     \mbox{\hyperlink{class_vec}{Vec<H, T>}} ColA;}
+\DoxyCodeLine{319     \textcolor{comment}{// loops over A's columns and B's column-\/values}}
+\DoxyCodeLine{320     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < W; j++)\{}
+\DoxyCodeLine{321         ColA += V[j] * GetColumn(j);}
+\DoxyCodeLine{322     \}}
+\DoxyCodeLine{323     \textcolor{keywordflow}{return} ColA;}
+\DoxyCodeLine{324 \}}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{336 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{337 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{338 \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}{MatBase<H, W, T>::operator*=}}(\textcolor{keyword}{const} N \&r)\{}
+\DoxyCodeLine{339     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{340         (*this)[i] *= r;}
+\DoxyCodeLine{341     \}}
+\DoxyCodeLine{342     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{343 \}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{355 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{356 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{357 \textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}} \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{MatBase<H, W, T>::operator*}}(\textcolor{keyword}{const} N \&r)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{358     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(*\textcolor{keyword}{this}) *= r;}
+\DoxyCodeLine{359 \}}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{371 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{372 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{373 \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a6a7af497f942e33075d43fd9ca622fbe}{MatBase<H, W, T>::operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\{}
+\DoxyCodeLine{374     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{375         (*this)[i] += B[i];}
+\DoxyCodeLine{376     \}}
+\DoxyCodeLine{377     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{378 \}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{390 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{391 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{392 \textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}} \mbox{\hyperlink{class_mat_base_a913f1916749a4a42d80e7c21bc313f49}{MatBase<H, W, T>::operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{393     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(*\textcolor{keyword}{this}) += B;}
+\DoxyCodeLine{394 \}}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{406 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{407 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{408 \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}}\& \mbox{\hyperlink{class_mat_base_a2391380d8e303de9cf2bdaad10d7f9e5}{MatBase<H, W, T>::operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\{}
+\DoxyCodeLine{409     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{410         (*this)[i] -\/= B[i];}
+\DoxyCodeLine{411     \}}
+\DoxyCodeLine{412     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{413 \}}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{425 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{426 \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                }
+\DoxyCodeLine{427 \textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W , T>}} \mbox{\hyperlink{class_mat_base_a8fb2528e5ebbd75f81f472a7edab4377}{MatBase<H, W, T>::operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, N>}} \&B)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{428     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(*\textcolor{keyword}{this}) -\/= B;}
+\DoxyCodeLine{429 \}}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{440 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{441 \textcolor{keyword}{template}<\textcolor{keyword}{typename} Cast>}
+\DoxyCodeLine{442 \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>::operator}} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, Cast>}} ()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{443     \mbox{\hyperlink{class_mat_base}{MatBase<H, W, Cast>}} CM;}
+\DoxyCodeLine{444     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; CM[i] = static\_cast<Vec<W, Cast>>((*this)[i]), i++)\{\}}
+\DoxyCodeLine{445     \textcolor{keywordflow}{return} CM;}
+\DoxyCodeLine{446 \}}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449 }
+\DoxyCodeLine{450 \textcolor{comment}{//?                              ?//}}
+\DoxyCodeLine{451 \textcolor{comment}{//?         Matrix Class         ?//}}
+\DoxyCodeLine{452 \textcolor{comment}{//?                              ?//}}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{461 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} H, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} W = H, \textcolor{keyword}{typename} T= \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{462 \textcolor{keyword}{class }\mbox{\hyperlink{class_mat}{Mat}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_mat_base}{MatBase}}<H, W, T> \{}
+\DoxyCodeLine{463 \textcolor{keyword}{public}:}
+\DoxyCodeLine{464     \mbox{\hyperlink{class_mat}{Mat}}() : \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}() \{\}}
+\DoxyCodeLine{465     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(m1) \{\}}
+\DoxyCodeLine{466     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(m1) \{\}}
+\DoxyCodeLine{467     \mbox{\hyperlink{class_mat}{Mat}}(std::initializer\_list<std::initializer\_list<T>> v) : \mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}}(v) \{\}}
+\DoxyCodeLine{468     \mbox{\hyperlink{class_mat}{\string~Mat}}() \{\}}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470     \textcolor{keyword}{template}<\textcolor{keywordtype}{int} W2, \textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat}{Mat<H, W2, T>}}\& operator*=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<W, W2, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *= (\mbox{\hyperlink{class_mat_base}{MatBase<W, W2, N>}})B;\} \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{471     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}\& operator*=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *= (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\}    \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{472     \textcolor{keyword}{template}<\textcolor{keywordtype}{int} W2, \textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat}{Mat<H, W2, T>}}  operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<W, W2, N>}} \&B)\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *  (\mbox{\hyperlink{class_mat_base}{MatBase<W, W2, N>}})B;\}  \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{473     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}  operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *  (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\}  \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{474     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}\& operator*=(\textcolor{keyword}{const} N \&r)                  \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *= r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{475     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}  operator* (\textcolor{keyword}{const} N \&r)\textcolor{keyword}{            const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) *  r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{476     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)     \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) += (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\} \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{477     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}  operator+ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) +  (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\}    \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{478     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>                \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)     \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) -\/= (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\}    \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{479     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}  operator-\/ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, W , N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) -\/  (\mbox{\hyperlink{class_mat_base}{MatBase<H, W , N>}})B;\}    \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481                                         \mbox{\hyperlink{class_mat}{Mat<H, W , T>}}  Transpose(\textcolor{keywordtype}{void})\textcolor{keyword}{                       const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this).Transpose();\}}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>         \textcolor{keyword}{const}  \mbox{\hyperlink{class_vec}{Vec<H, T>}}     operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<W, N>}} \&V)\textcolor{keyword}{    const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*this) * V;\} \textcolor{comment}{// Vector matrix multiplication}}
+\DoxyCodeLine{484     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Cast>                            \textcolor{keyword}{operator} \mbox{\hyperlink{class_mat}{Mat<H, W, Cast>}} ()\textcolor{keyword}{         const }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat}{Mat<H, W, Cast>}})((\mbox{\hyperlink{class_mat_base}{MatBase<H, W, T>}})(*\textcolor{keyword}{this}));\}}
+\DoxyCodeLine{485 \};}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{493 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{494 \textcolor{keyword}{class }\mbox{\hyperlink{class_mat}{Mat}}<H, H, T> : \textcolor{keyword}{public} \mbox{\hyperlink{class_mat_base}{MatBase}}<H, H, T> \{}
+\DoxyCodeLine{495 \textcolor{keyword}{public}:}
+\DoxyCodeLine{496     \mbox{\hyperlink{class_mat}{Mat}}() : \mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}}() \{\}}
+\DoxyCodeLine{497     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}}(m1) \{\}}
+\DoxyCodeLine{498     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}}(m1) \{\}}
+\DoxyCodeLine{499     \mbox{\hyperlink{class_mat}{Mat}}(std::initializer\_list<std::initializer\_list<T>> v) : \mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}}(v) \{\}}
+\DoxyCodeLine{500     \mbox{\hyperlink{class_mat}{\string~Mat}}() \{\}}
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}\& operator*=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) *= (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{503     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}  operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) *  (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{504     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}\& operator*=(\textcolor{keyword}{const} N \&r)                    \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) *= r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{505     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}  operator* (\textcolor{keyword}{const} N \&r)\textcolor{keyword}{            const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) *  r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{506     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) += (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{507     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}  operator+ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) +  (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{508     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) -\/= (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{509     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}  operator-\/ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<H, H, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) -\/  (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{510     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Cast>                   \textcolor{keyword}{operator} \mbox{\hyperlink{class_mat}{Mat<H, H, Cast>}} ()\textcolor{keyword}{        const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat}{Mat<H, H, Cast>}})((\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*\textcolor{keyword}{this}));\}}
+\DoxyCodeLine{511     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_vec}{Vec<H, T>}}    operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_vec}{Vec<H, N>}} \&V)\textcolor{keyword}{   const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<H, H, T>}})(*this) * V;\}                     \textcolor{comment}{// Vector matrix multiplication}}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513                                 \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}}  Transpose(\textcolor{keywordtype}{void})\textcolor{keyword}{                   const   }\{\textcolor{keywordflow}{return} \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}(*\textcolor{keyword}{this});\}}
+\DoxyCodeLine{514     \mbox{\hyperlink{class_mat}{Mat}}<H-\/1, H-\/1, T> SubMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j) \textcolor{keyword}{const};}
+\DoxyCodeLine{515     \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} CoFactorMatrix(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{516     \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} Adjoint(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{517     \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} Inverse(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{518     \textcolor{keywordtype}{double} CoFactor(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j) \textcolor{keyword}{const};}
+\DoxyCodeLine{519     \textcolor{keywordtype}{double} Minor(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j) \textcolor{keyword}{const};}
+\DoxyCodeLine{520     \textcolor{keywordtype}{double} Determinant(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{521 \};}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{524 }
+\DoxyCodeLine{534 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{535 \mbox{\hyperlink{class_mat}{Mat}}<H-\/1, H-\/1, T> \mbox{\hyperlink{class_mat}{Mat<H, H, T>::SubMatrix}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{536     \mbox{\hyperlink{class_mat}{Mat}}<H-\/1, H-\/1, T> Ms;}
+\DoxyCodeLine{537     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i2 = 0, i3 = 0; i2 < H; i2++)\{}
+\DoxyCodeLine{538         \textcolor{keywordflow}{if}(i2 == i) \textcolor{comment}{// skip row}}
+\DoxyCodeLine{539             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{540         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j2 = 0, j3 = 0; j2 < H; j2++)\{}
+\DoxyCodeLine{541             \textcolor{keywordflow}{if}(j2 == j) \textcolor{comment}{// skip column}}
+\DoxyCodeLine{542                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{543             Ms[i3][j3] = (*this)[i2][j2];}
+\DoxyCodeLine{544             j3++;}
+\DoxyCodeLine{545         \}}
+\DoxyCodeLine{546         i3++;}
+\DoxyCodeLine{547     \}}
+\DoxyCodeLine{548     \textcolor{keywordflow}{return} Ms;}
+\DoxyCodeLine{549 \}}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{560 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{561 \textcolor{keywordtype}{double} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::Minor}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{562     \textcolor{keywordflow}{return} this-\/>SubMatrix(i, j).Determinant();}
+\DoxyCodeLine{563 \}}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{574 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{575 \textcolor{keywordtype}{double} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::CoFactor}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{576     \textcolor{keywordflow}{return} ((i+j) \% 2 ? -\/1 : 1) * Minor(i, j);}
+\DoxyCodeLine{577 \}}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{586 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{587 \textcolor{keywordtype}{double} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::Determinant}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{588     \textcolor{comment}{// gaussian elimination}}
+\DoxyCodeLine{589     \textcolor{keywordtype}{double} det = 1;}
+\DoxyCodeLine{590     \textcolor{keywordtype}{double} detDiv = 1;}
+\DoxyCodeLine{591     \textcolor{comment}{// use a long double as big matrices can get large with this calculation methode}}
+\DoxyCodeLine{592     \mbox{\hyperlink{class_mat}{Mat<H, H, long double>}} GJR = (*this); \textcolor{comment}{// Matrix to execute the reduction on}}
+\DoxyCodeLine{593 }
+\DoxyCodeLine{594     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{595     \textcolor{keywordflow}{for}(; i < H-\/1; i++)\{}
+\DoxyCodeLine{596         \textcolor{comment}{// PN = PN * P0[0] -\/ P0 * PN[0] => [0, 0, ...,] 0, a, b, c, ...}}
+\DoxyCodeLine{597         \textcolor{comment}{// divide determinant by GJR[i][i] for every loop}}
+\DoxyCodeLine{598         \textcolor{comment}{// det /= (H -\/ (i + 1)) * GJR[i][i];}}
+\DoxyCodeLine{599         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = i+1; j < H; j++)\{}
+\DoxyCodeLine{600             detDiv *= GJR[i][i];}
+\DoxyCodeLine{601             GJR[j] = (GJR[j] * GJR[i][i]) -\/ (GJR[i] * GJR[j][i]);}
+\DoxyCodeLine{602         \}}
+\DoxyCodeLine{603     \}}
+\DoxyCodeLine{604     }
+\DoxyCodeLine{605     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{606         det *= GJR[i][i];}
+\DoxyCodeLine{607     \}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609     det /= detDiv;}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{611     \textcolor{keywordflow}{return} det;}
+\DoxyCodeLine{612 \}}
+\DoxyCodeLine{613 }
+\DoxyCodeLine{621 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{622 \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::CoFactorMatrix}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{623     \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} cM;}
+\DoxyCodeLine{624     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < H; i++)\{}
+\DoxyCodeLine{625         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j = 0; j < H; j++)\{}
+\DoxyCodeLine{626             cM[i][j] = this-\/>CoFactor(i, j);}
+\DoxyCodeLine{627         \}}
+\DoxyCodeLine{628     \}}
+\DoxyCodeLine{629     \textcolor{keywordflow}{return} cM;}
+\DoxyCodeLine{630 \}}
+\DoxyCodeLine{631 }
+\DoxyCodeLine{639 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{640 \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::Adjoint}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{641     \textcolor{keywordflow}{return} CoFactorMatrix().Transpose();}
+\DoxyCodeLine{642 \}}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{652 \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} H, \textcolor{keyword}{typename} T>}
+\DoxyCodeLine{653 \mbox{\hyperlink{class_mat_3_01_h_00_01_h_00_01_t_01_4}{Mat<H, H, T>}} \mbox{\hyperlink{class_mat}{Mat<H, H, T>::Inverse}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{654     \textcolor{keywordtype}{double} det = Determinant();}
+\DoxyCodeLine{655     \textcolor{keywordflow}{if}(det == 0)\{}
+\DoxyCodeLine{656         \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Matrix is not invertible, determinant of 0"{}});}
+\DoxyCodeLine{657     \}}
+\DoxyCodeLine{658     \textcolor{keywordflow}{return} Adjoint() * (1 / det);}
+\DoxyCodeLine{659 \}}
+\DoxyCodeLine{660 }
+\DoxyCodeLine{666 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{667 \textcolor{keyword}{class }\mbox{\hyperlink{class_mat}{Mat}}<1, 1, T> : \textcolor{keyword}{public} \mbox{\hyperlink{class_mat_base}{MatBase}}<1, 1, T> \{}
+\DoxyCodeLine{668 }
+\DoxyCodeLine{669 \textcolor{keyword}{public}:}
+\DoxyCodeLine{670     \mbox{\hyperlink{class_mat}{Mat}}() : \mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}}() \{\}}
+\DoxyCodeLine{671     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}}(m1) \{\}}
+\DoxyCodeLine{672     \mbox{\hyperlink{class_mat}{Mat}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}} \&m1) : \mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}}(m1) \{\}}
+\DoxyCodeLine{673     \mbox{\hyperlink{class_mat}{Mat}}(std::initializer\_list<std::initializer\_list<T>> v) : \mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}}(v) \{\}}
+\DoxyCodeLine{674     \mbox{\hyperlink{class_mat}{\string~Mat}}() \{\}}
+\DoxyCodeLine{675 }
+\DoxyCodeLine{676     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}\& operator*=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) *= (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\} \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{677     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}  operator* (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) *  (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\} \textcolor{comment}{// Matrix multiplication}}
+\DoxyCodeLine{678     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}\& operator*=(\textcolor{keyword}{const} N \&r)                    \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) *= r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{679     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}  operator* (\textcolor{keyword}{const} N \&r)\textcolor{keyword}{            const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) *  r;\}                    \textcolor{comment}{// Scalar multiplication}}
+\DoxyCodeLine{680     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) += (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{681     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}  operator+ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) +  (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{682     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N>        \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)         \{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) -\/= (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{683     \textcolor{keyword}{template}<\textcolor{keyword}{typename} N> \textcolor{keyword}{const}  \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}  operator-\/ (\textcolor{keyword}{const} \mbox{\hyperlink{class_mat}{Mat<1, 1, N>}} \&B)\textcolor{keyword}{ const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this) -\/  (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, N>}})B;\}  \textcolor{comment}{// Matrix addition}}
+\DoxyCodeLine{684                                 \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}}  Transpose(\textcolor{keywordtype}{void})\textcolor{keyword}{                   const   }\{\textcolor{keywordflow}{return} (\mbox{\hyperlink{class_mat_base}{MatBase<1, 1, T>}})(*this).Transpose();\}}
+\DoxyCodeLine{685 }
+\DoxyCodeLine{686     \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}} SubMatrix(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j) \textcolor{keyword}{const};}
+\DoxyCodeLine{687     \textcolor{keywordtype}{double} Determinant(\textcolor{keywordtype}{void}) \textcolor{keyword}{const};}
+\DoxyCodeLine{688 \};}
+\DoxyCodeLine{689 }
+\DoxyCodeLine{698 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{699 \mbox{\hyperlink{class_mat_3_011_00_011_00_01_t_01_4}{Mat<1, 1, T>}} \mbox{\hyperlink{class_mat}{Mat<1, 1, T>::SubMatrix}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} j)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{700     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{701 \}}
+\DoxyCodeLine{702 }
+\DoxyCodeLine{709 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{710 \textcolor{keywordtype}{double} \mbox{\hyperlink{class_mat}{Mat<1, 1, T>::Determinant}}(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{711     \textcolor{keywordflow}{return} (*\textcolor{keyword}{this})[0][0];}
+\DoxyCodeLine{712 \}}
+
+\end{DoxyCode}

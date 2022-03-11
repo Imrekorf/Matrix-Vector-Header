@@ -1,0 +1,70 @@
+\hypertarget{class_quaternion}{}\doxysection{Quaternion Class Reference}
+\label{class_quaternion}\index{Quaternion@{Quaternion}}
+
+
+Specialized vector known as a quaternion, used for rotation calculations.  
+
+
+
+
+{\ttfamily \#include $<$Vec.\+hpp$>$}
+
+Inheritance diagram for Quaternion\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_quaternion}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_quaternion_a4187371e13eae50385d2114fccf0f209}\label{class_quaternion_a4187371e13eae50385d2114fccf0f209}} 
+{\bfseries Quaternion} (double w, double x, double y, double z)
+\item 
+const \mbox{\hyperlink{class_quaternion}{Quaternion}} \mbox{\hyperlink{class_quaternion_a9ae138f39e11c7f3e6fac41c5ec7d008}{get\+HProduct}} (const \mbox{\hyperlink{class_quaternion}{Quaternion}} q) const
+\begin{DoxyCompactList}\small\item\em Calculates the Hamilton product between two quaternions. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_quaternion}{Quaternion}} \mbox{\hyperlink{class_quaternion_a2240df177e7d2d0e650a7309e76d00d4}{get\+Conjugate}} () const
+\begin{DoxyCompactList}\small\item\em creates a conjugated version of the quaternion \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Specialized vector known as a quaternion, used for rotation calculations. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_quaternion_a2240df177e7d2d0e650a7309e76d00d4}\label{class_quaternion_a2240df177e7d2d0e650a7309e76d00d4}} 
+\index{Quaternion@{Quaternion}!getConjugate@{getConjugate}}
+\index{getConjugate@{getConjugate}!Quaternion@{Quaternion}}
+\doxysubsubsection{\texorpdfstring{getConjugate()}{getConjugate()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_quaternion}{Quaternion}} Quaternion\+::get\+Conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+creates a conjugated version of the quaternion 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_quaternion}{Quaternion}} the conjugated quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_quaternion_a9ae138f39e11c7f3e6fac41c5ec7d008}\label{class_quaternion_a9ae138f39e11c7f3e6fac41c5ec7d008}} 
+\index{Quaternion@{Quaternion}!getHProduct@{getHProduct}}
+\index{getHProduct@{getHProduct}!Quaternion@{Quaternion}}
+\doxysubsubsection{\texorpdfstring{getHProduct()}{getHProduct()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_quaternion}{Quaternion}} Quaternion\+::get\+HProduct (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_quaternion}{Quaternion}}}]{q }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the Hamilton product between two quaternions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & the other quaternion to use for the product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_quaternion}{Quaternion}} the product of the two quaternions 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Vec.\+hpp\end{DoxyCompactItemize}

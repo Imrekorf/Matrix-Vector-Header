@@ -1,0 +1,655 @@
+\hypertarget{class_mat_base}{}\doxysection{Mat\+Base\texorpdfstring{$<$}{<} H, W, T \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_mat_base}\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+
+
+Base matrix class.  
+
+
+
+
+{\ttfamily \#include $<$Matrix.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}{Mat\+Base}} ()
+\begin{DoxyCompactList}\small\item\em Data manipulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mat_base_a6b39a06a0b34dcf57dd3c1bc542e736d}{Mat\+Base}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \&m1)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mat_base_a8cf070a88c179c3fb618971ce0d60b93}{Mat\+Base}} (std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ T $>$ $>$ v)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object based on an initializer list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mat_base_a262d73eda139f6ccb1ad90264f313511}{$\sim$\+Mat\+Base}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mat_base_ada5253ac17c0a3e4329a55bfbaf571c6}\label{class_mat_base_ada5253ac17c0a3e4329a55bfbaf571c6}} 
+\mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$ \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i)
+\item 
+\mbox{\Hypertarget{class_mat_base_abf5340734b7a46f521accb385ca55188}\label{class_mat_base_abf5340734b7a46f521accb385ca55188}} 
+\mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$ {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i) const
+\item 
+\mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$ \mbox{\hyperlink{class_mat_base_abd3f105bc51a098a0288988314dee71a}{Get\+Row}} (const unsigned int i) const
+\begin{DoxyCompactList}\small\item\em Returns the row at given position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ \mbox{\hyperlink{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}{Get\+Column}} (const unsigned int i) const
+\begin{DoxyCompactList}\small\item\em Returns the column at given position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}{Set\+Row}} (const unsigned int i, const \mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$ V)
+\begin{DoxyCompactList}\small\item\em Set the row of the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mat_base_afe8d16f4364e8ce627d1e50f538bca8a}{Set\+Column}} (const unsigned int i, const \mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ V)
+\begin{DoxyCompactList}\small\item\em Sets the column of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base_ae398f4a3ea30e65f5027022578522880}{Transpose}} (void) const
+\begin{DoxyCompactList}\small\item\em Transposes the matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}{operator$\ast$=}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B)
+\begin{DoxyCompactList}\small\item\em Operator overloads. \end{DoxyCompactList}\item 
+{\footnotesize template$<$int W2, typename N $>$ }\\const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W2, T $>$ \mbox{\hyperlink{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}{operator$\ast$}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ W, W2, N $>$ \&B) const
+\begin{DoxyCompactList}\small\item\em Multiplies the matrix with another, allows for different matrix sizes. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base_acb84abc8a25724348faec61d0755c441}{operator$\ast$}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B) const
+\begin{DoxyCompactList}\small\item\em Multiplies the matrix with another. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base_a6ea1a8ba3aa4aa03e449f88bb7127df2}{operator$\ast$=}} (const N \&r)
+\begin{DoxyCompactList}\small\item\em Scales matrix inplace. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base_a41cc4f60657424b11aa781def473b814}{operator$\ast$}} (const N \&r) const
+\begin{DoxyCompactList}\small\item\em Scales matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base_a6a7af497f942e33075d43fd9ca622fbe}{operator+=}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B)
+\begin{DoxyCompactList}\small\item\em Adds two matrices together inplace. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base_a913f1916749a4a42d80e7c21bc313f49}{operator+}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B) const
+\begin{DoxyCompactList}\small\item\em Adds two matrices together. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base_a2391380d8e303de9cf2bdaad10d7f9e5}{operator-\/=}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B)
+\begin{DoxyCompactList}\small\item\em Subtracts matrix B from the matrix inplace. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base_a8fb2528e5ebbd75f81f472a7edab4377}{operator-\/}} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&B) const
+\begin{DoxyCompactList}\small\item\em Subtracts matrix B from the matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ \mbox{\hyperlink{class_mat_base_a72131807b94dcd8af24d926e9fa9e660}{operator$\ast$}} (const \mbox{\hyperlink{class_vec}{Vec}}$<$ W, N $>$ \&V) const
+\begin{DoxyCompactList}\small\item\em Multiplies a vector to a matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Cast $>$ }\\\mbox{\hyperlink{class_mat_base_aa1ab188a83dbb7d3127a866f8d6cf669}{operator Mat\+Base$<$ H, W, Cast $>$}} () const
+\begin{DoxyCompactList}\small\item\em Casts matrix to different matrix type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mat_base_a28a38734a90d3c9d75a7ac8cce97c61f}\label{class_mat_base_a28a38734a90d3c9d75a7ac8cce97c61f}} 
+void {\bfseries print} ()
+\begin{DoxyCompactList}\small\item\em prints out the values of the matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$unsigned int H, unsigned int W = H, typename T = double$>$\newline
+class Mat\+Base$<$ H, W, T $>$}
+Base matrix class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}\label{class_mat_base_a2cce3b24ea8c64565fb61158a620e017}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!MatBase@{MatBase}}
+\index{MatBase@{MatBase}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{MatBase()}{MatBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::\mbox{\hyperlink{class_mat_base}{Mat\+Base}}}
+
+
+
+Data manipulation. 
+
+Construct a new empty \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{class_mat_base_a6b39a06a0b34dcf57dd3c1bc542e736d}\label{class_mat_base_a6b39a06a0b34dcf57dd3c1bc542e736d}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!MatBase@{MatBase}}
+\index{MatBase@{MatBase}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{MatBase()}{MatBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::\mbox{\hyperlink{class_mat_base}{Mat\+Base}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \&}]{m1 }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em m1} & the \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object to copy from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mat_base_a8cf070a88c179c3fb618971ce0d60b93}\label{class_mat_base_a8cf070a88c179c3fb618971ce0d60b93}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!MatBase@{MatBase}}
+\index{MatBase@{MatBase}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{MatBase()}{MatBase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::\mbox{\hyperlink{class_mat_base}{Mat\+Base}} (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ T $>$ $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object based on an initializer list. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & the initializer list \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mat_base_a262d73eda139f6ccb1ad90264f313511}\label{class_mat_base_a262d73eda139f6ccb1ad90264f313511}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!````~MatBase@{$\sim$MatBase}}
+\index{````~MatBase@{$\sim$MatBase}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$MatBase()}{~MatBase()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::$\sim$\mbox{\hyperlink{class_mat_base}{Mat\+Base}}}
+
+
+
+Destroy the \mbox{\hyperlink{class_mat_base}{Mat\+Base}} object. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}\label{class_mat_base_a47f8457da05f2e57a4a7d01def396a0b}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!GetColumn@{GetColumn}}
+\index{GetColumn@{GetColumn}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{GetColumn()}{GetColumn()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::Get\+Column (\begin{DoxyParamCaption}\item[{const unsigned int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Returns the column at given position. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the column position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vec$<$\+H, T$>$ vector containing the column 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_abd3f105bc51a098a0288988314dee71a}\label{class_mat_base_abd3f105bc51a098a0288988314dee71a}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!GetRow@{GetRow}}
+\index{GetRow@{GetRow}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{GetRow()}{GetRow()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::Get\+Row (\begin{DoxyParamCaption}\item[{const unsigned int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Returns the row at given position. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the row position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vec$<$\+W, T$>$ vector containing the row 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_aa1ab188a83dbb7d3127a866f8d6cf669}\label{class_mat_base_aa1ab188a83dbb7d3127a866f8d6cf669}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator MatBase$<$ H, W, Cast $>$@{operator MatBase$<$ H, W, Cast $>$}}
+\index{operator MatBase$<$ H, W, Cast $>$@{operator MatBase$<$ H, W, Cast $>$}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator MatBase$<$ H, W, Cast $>$()}{operator MatBase< H, W, Cast >()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename Cast $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, Cast $>$}
+
+
+
+Casts matrix to different matrix type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em Cast} & the new datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W, Cast$>$ the casted matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_acb84abc8a25724348faec61d0755c441}\label{class_mat_base_acb84abc8a25724348faec61d0755c441}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption}) const}
+
+
+
+Multiplies the matrix with another. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Mat\+Base$<$\+H, W, T$>$ the multiplied matrix object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}\label{class_mat_base_ac5d8d1083b5e96e07e4d9251ec245d0b}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$int W2, typename N $>$ \\
+const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W2, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ W, W2, N $>$ \&}]{B }\end{DoxyParamCaption}) const}
+
+
+
+Multiplies the matrix with another, allows for different matrix sizes. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em W2} & width of the 2nd matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Mat\+Base$<$\+H, W2, T$>$ the multiplied matrix object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a41cc4f60657424b11aa781def473b814}\label{class_mat_base_a41cc4f60657424b11aa781def473b814}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const N \&}]{r }\end{DoxyParamCaption}) const}
+
+
+
+Scales matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the scalar \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the scalar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Mat\+Base$<$\+H, W , T$>$ the scaled matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a72131807b94dcd8af24d926e9fa9e660}\label{class_mat_base_a72131807b94dcd8af24d926e9fa9e660}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+const \mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec}{Vec}}$<$ W, N $>$ \&}]{V }\end{DoxyParamCaption}) const}
+
+
+
+Multiplies a vector to a matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the vector \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em V} & the vector to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Vec$<$\+H, T$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}\label{class_mat_base_a2fbcb68a7482ca1b7123f1ce2216c19f}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption})}
+
+
+
+Operator overloads. 
+
+Multiplies the matrix with another inplace
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W, T$>$\& reference to the multiplied matrix object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a6ea1a8ba3aa4aa03e449f88bb7127df2}\label{class_mat_base_a6ea1a8ba3aa4aa03e449f88bb7127df2}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const N \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Scales matrix inplace. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the scalar \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the scalar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W , T$>$\& reference to the scaled matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a913f1916749a4a42d80e7c21bc313f49}\label{class_mat_base_a913f1916749a4a42d80e7c21bc313f49}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption}) const}
+
+
+
+Adds two matrices together. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Mat\+Base$<$\+H, W , T$>$ the resulting matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a6a7af497f942e33075d43fd9ca622fbe}\label{class_mat_base_a6a7af497f942e33075d43fd9ca622fbe}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption})}
+
+
+
+Adds two matrices together inplace. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W , T$>$\& reference to the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a8fb2528e5ebbd75f81f472a7edab4377}\label{class_mat_base_a8fb2528e5ebbd75f81f472a7edab4377}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption}) const}
+
+
+
+Subtracts matrix B from the matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const Mat\+Base$<$\+H, W , T$>$ the resulting matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_a2391380d8e303de9cf2bdaad10d7f9e5}\label{class_mat_base_a2391380d8e303de9cf2bdaad10d7f9e5}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+template$<$typename N $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \& \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, N $>$ \&}]{B }\end{DoxyParamCaption})}
+
+
+
+Subtracts matrix B from the matrix inplace. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+{\em N} & datatype of the 2nd matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em B} & the 2nd matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W , T$>$\& reference to the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mat_base_afe8d16f4364e8ce627d1e50f538bca8a}\label{class_mat_base_afe8d16f4364e8ce627d1e50f538bca8a}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!SetColumn@{SetColumn}}
+\index{SetColumn@{SetColumn}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{SetColumn()}{SetColumn()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+void \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::Set\+Column (\begin{DoxyParamCaption}\item[{const unsigned int}]{i,  }\item[{const \mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$}]{V }\end{DoxyParamCaption})}
+
+
+
+Sets the column of the matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the column position \\
+\hline
+{\em V} & the vector of values \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}\label{class_mat_base_a4533d2f44972a257e10f46c5fba1acf7}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!SetRow@{SetRow}}
+\index{SetRow@{SetRow}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{SetRow()}{SetRow()}}
+{\footnotesize\ttfamily template$<$unsigned int H, unsigned int W, typename T $>$ \\
+void \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::Set\+Row (\begin{DoxyParamCaption}\item[{const unsigned int}]{i,  }\item[{const \mbox{\hyperlink{class_vec}{Vec}}$<$ W, T $>$}]{V }\end{DoxyParamCaption})}
+
+
+
+Set the row of the matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the row position \\
+\hline
+{\em V} & the vector of values \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mat_base_ae398f4a3ea30e65f5027022578522880}\label{class_mat_base_ae398f4a3ea30e65f5027022578522880}} 
+\index{MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!MatBase$<$ H, W, T $>$@{MatBase$<$ H, W, T $>$}}
+\doxysubsubsection{\texorpdfstring{Transpose()}{Transpose()}}
+{\footnotesize\ttfamily template$<$unsigned H, unsigned int W, typename T $>$ \\
+\mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$\+::Transpose (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Transposes the matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Mat\+Base$<$\+H, W, T$>$ The transposed matrix 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Matrix.\+hpp\end{DoxyCompactItemize}

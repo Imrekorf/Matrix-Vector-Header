@@ -1,0 +1,89 @@
+\hypertarget{class_mat}{}\doxysection{Mat\texorpdfstring{$<$}{<} H, W, T \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_mat}\index{Mat$<$ H, W, T $>$@{Mat$<$ H, W, T $>$}}
+
+
+Matrix class for a non-\/square matrix.  
+
+
+
+
+{\ttfamily \#include $<$Matrix.\+hpp$>$}
+
+Inheritance diagram for Mat\texorpdfstring{$<$}{<} H, W, T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mat}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mat_a920651ca9bb944fc49e1a51c20b0e178}\label{class_mat_a920651ca9bb944fc49e1a51c20b0e178}} 
+{\bfseries Mat} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ \&m1)
+\item 
+\mbox{\Hypertarget{class_mat_a7d11cb553bb218dfd49bc839e2427ea1}\label{class_mat_a7d11cb553bb218dfd49bc839e2427ea1}} 
+{\bfseries Mat} (const \mbox{\hyperlink{class_mat_base}{Mat\+Base}}$<$ H, W, T $>$ \&m1)
+\item 
+\mbox{\Hypertarget{class_mat_a16d4c92ea031b989e65892a39585b25b}\label{class_mat_a16d4c92ea031b989e65892a39585b25b}} 
+{\bfseries Mat} (std\+::initializer\+\_\+list$<$ std\+::initializer\+\_\+list$<$ T $>$ $>$ v)
+\item 
+\mbox{\Hypertarget{class_mat_ac53edc2ae886134eb4d6debe989a1031}\label{class_mat_ac53edc2ae886134eb4d6debe989a1031}} 
+{\footnotesize template$<$int W2, typename N $>$ }\\\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W2, T $>$ \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ W, W2, N $>$ \&B)
+\item 
+\mbox{\Hypertarget{class_mat_af6ccf01d6713bbe0fe921671cc38f2a1}\label{class_mat_af6ccf01d6713bbe0fe921671cc38f2a1}} 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B)
+\item 
+\mbox{\Hypertarget{class_mat_af53c2bca6ef92d2672e40eb0614f2723}\label{class_mat_af53c2bca6ef92d2672e40eb0614f2723}} 
+{\footnotesize template$<$int W2, typename N $>$ }\\const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W2, T $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ W, W2, N $>$ \&B) const
+\item 
+\mbox{\Hypertarget{class_mat_a8e1e135baeda6445d7881c7ebbaa36bd}\label{class_mat_a8e1e135baeda6445d7881c7ebbaa36bd}} 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B) const
+\item 
+\mbox{\Hypertarget{class_mat_ad411aff55b6e67c600498b2897abffb2}\label{class_mat_ad411aff55b6e67c600498b2897abffb2}} 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ \& {\bfseries operator$\ast$=} (const N \&r)
+\item 
+\mbox{\Hypertarget{class_mat_a71dd4cde40f00916e39af34215aa1bd8}\label{class_mat_a71dd4cde40f00916e39af34215aa1bd8}} 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ {\bfseries operator$\ast$} (const N \&r) const
+\item 
+\mbox{\Hypertarget{class_mat_add9d642ed42ebcb27b07dfdd15999beb}\label{class_mat_add9d642ed42ebcb27b07dfdd15999beb}} 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ \& {\bfseries operator+=} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B)
+\item 
+\mbox{\Hypertarget{class_mat_ac67bbf34f7d94a5853ba64607c7b2195}\label{class_mat_ac67bbf34f7d94a5853ba64607c7b2195}} 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ {\bfseries operator+} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B) const
+\item 
+\mbox{\Hypertarget{class_mat_a32ed681f0de7cd277151e1d13cee5ecd}\label{class_mat_a32ed681f0de7cd277151e1d13cee5ecd}} 
+{\footnotesize template$<$typename N $>$ }\\\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ \& {\bfseries operator-\/=} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B)
+\item 
+\mbox{\Hypertarget{class_mat_a416cfe5af7c33b39088c1e3f7596fb7d}\label{class_mat_a416cfe5af7c33b39088c1e3f7596fb7d}} 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ {\bfseries operator-\/} (const \mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, N $>$ \&B) const
+\item 
+\mbox{\Hypertarget{class_mat_ab4f46fd3d76479c67737f94ee7cd1311}\label{class_mat_ab4f46fd3d76479c67737f94ee7cd1311}} 
+\mbox{\hyperlink{class_mat}{Mat}}$<$ H, W, T $>$ {\bfseries Transpose} (void) const
+\item 
+\mbox{\Hypertarget{class_mat_a6e7e32e670b34a90965ace7dc668b73d}\label{class_mat_a6e7e32e670b34a90965ace7dc668b73d}} 
+{\footnotesize template$<$typename N $>$ }\\const \mbox{\hyperlink{class_vec}{Vec}}$<$ H, T $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_vec}{Vec}}$<$ W, N $>$ \&V) const
+\item 
+\mbox{\Hypertarget{class_mat_a55babcc6e8c7921e09394d9760eead79}\label{class_mat_a55babcc6e8c7921e09394d9760eead79}} 
+{\footnotesize template$<$typename Cast $>$ }\\{\bfseries operator Mat$<$ H, W, Cast $>$} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$unsigned int H, unsigned int W = H, typename T = double$>$\newline
+class Mat$<$ H, W, T $>$}
+Matrix class for a non-\/square matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em H} & height of the matrix \\
+\hline
+{\em W} & width of the matrix \\
+\hline
+{\em T} & datatype of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Matrix.\+hpp\end{DoxyCompactItemize}

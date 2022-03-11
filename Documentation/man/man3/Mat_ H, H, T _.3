@@ -1,0 +1,262 @@
+.TH "Mat< H, H, T >" 3 "Fri Mar 11 2022" "Version V2.0" "MatrixVectorHeader" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Mat< H, H, T > \- Specialized Square matrix\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Matrix\&.hpp>\fP
+.PP
+Inherits \fBMatBase< H, H, T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMat\fP (const \fBMat\fP< H, H, T > &m1)"
+.br
+.ti -1c
+.RI "\fBMat\fP (const \fBMatBase\fP< H, H, T > &m1)"
+.br
+.ti -1c
+.RI "\fBMat\fP (std::initializer_list< std::initializer_list< T > > v)"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, H, T > & \fBoperator*=\fP (const \fBMat\fP< H, H, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, H, T > \fBoperator*\fP (const \fBMat\fP< H, H, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, H, T > & \fBoperator*=\fP (const N &r)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, H, T > \fBoperator*\fP (const N &r) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, H, T > & \fBoperator+=\fP (const \fBMat\fP< H, H, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, H, T > \fBoperator+\fP (const \fBMat\fP< H, H, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename N > \fBMat\fP< H, H, T > & \fBoperator\-=\fP (const \fBMat\fP< H, H, N > &B)"
+.br
+.ti -1c
+.RI "template<typename N > const \fBMat\fP< H, H, T > \fBoperator\-\fP (const \fBMat\fP< H, H, N > &B) const"
+.br
+.ti -1c
+.RI "template<typename Cast > \fBoperator Mat< H, H, Cast >\fP () const"
+.br
+.ti -1c
+.RI "template<typename N > const \fBVec\fP< H, T > \fBoperator*\fP (const \fBVec\fP< H, N > &V) const"
+.br
+.ti -1c
+.RI "\fBMat\fP< H, H, T > \fBTranspose\fP (void) const"
+.br
+.ti -1c
+.RI "\fBMat\fP< H\-1, H\-1, T > \fBSubMatrix\fP (const unsigned int i, const unsigned int j) const"
+.br
+.RI "Math\&. "
+.ti -1c
+.RI "\fBMat\fP< H, H, T > \fBCoFactorMatrix\fP (void) const"
+.br
+.RI "Calculates the cofactor matrix of the matrix\&. "
+.ti -1c
+.RI "\fBMat\fP< H, H, T > \fBAdjoint\fP (void) const"
+.br
+.RI "Calculates the Adjoint of the matrix\&. "
+.ti -1c
+.RI "\fBMat\fP< H, H, T > \fBInverse\fP (void) const"
+.br
+.RI "Calculates the inverse of the matrix\&. "
+.ti -1c
+.RI "double \fBCoFactor\fP (const unsigned int i, const unsigned int j) const"
+.br
+.RI "Calculates the CoFactor of the matrix\&. "
+.ti -1c
+.RI "double \fBMinor\fP (const unsigned int i, const unsigned int j) const"
+.br
+.RI "Calculates the Minor of the matrix\&. "
+.ti -1c
+.RI "double \fBDeterminant\fP (void) const"
+.br
+.RI "Calculates the Determinant of the matrix\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned H, typename T>
+.br
+class Mat< H, H, T >"Specialized Square matrix\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<unsigned H, typename T > \fBMat\fP< H, H, T > \fBMat\fP< H, H, T >::Adjoint (void) const"
+
+.PP
+Calculates the Adjoint of the matrix\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMat<H, H, T>\fP the Adjointed matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > double \fBMat\fP< H, H, T >::CoFactor (const unsigned int i, const unsigned int j) const"
+
+.PP
+Calculates the CoFactor of the matrix\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP the row to skip on the submatrix 
+.br
+\fIj\fP the column to skip on the submatrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the CoFactor of the matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > \fBMat\fP< H, H, T > \fBMat\fP< H, H, T >::CoFactorMatrix (void) const"
+
+.PP
+Calculates the cofactor matrix of the matrix\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMat<H, H, T>\fP The cofactor matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > double \fBMat\fP< H, H, T >::Determinant (void) const"
+
+.PP
+Calculates the Determinant of the matrix\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the Determinant of the matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > \fBMat\fP< H, H, T > \fBMat\fP< H, H, T >::Inverse (void) const"
+
+.PP
+Calculates the inverse of the matrix\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fIruntime_error\fP when matrix is not invertible 
+.RE
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMat<H, H, T>\fP The inversed matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > double \fBMat\fP< H, H, T >::Minor (const unsigned int i, const unsigned int j) const"
+
+.PP
+Calculates the Minor of the matrix\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP the row to skip on the submatrix 
+.br
+\fIj\fP the column to skip on the submatrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+double the Minor of the matrix 
+.RE
+.PP
+
+.SS "template<unsigned H, typename T > \fBMat\fP< H\-1, H\-1, T > \fBMat\fP< H, H, T >::SubMatrix (const unsigned int i, const unsigned int j) const"
+
+.PP
+Math\&. Gets a submatrix from the square matrix copies the matrix to a new matrix object with [H-1] size and excludes passed row and column 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP height and width of the matrix 
+.br
+\fIT\fP datatype of the matrix 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP the row to skip 
+.br
+\fIj\fP the column to skip 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBMat\fP<H-1, H-1, T> submatrix of the original matrix 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for MatrixVectorHeader from the source code\&.
