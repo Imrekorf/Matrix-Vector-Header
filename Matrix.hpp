@@ -62,8 +62,8 @@ public:
 	template<typename N>		 const	MatBase<H, W , T>  operator* (const N &r) 			  	  const;// Scalar multiplication
 	template<typename N>		 		MatBase<H, W , T>& operator+=(const MatBase<H, W, N> &B);		// Matrix addition
 	template<typename N>		 const  MatBase<H, W , T>  operator+ (const MatBase<H, W, N> &B)  const;// Matrix addition
-	template<typename N>		 		MatBase<H, W , T>& operator-=(const MatBase<H, W, N> &B);		// Matrix addition
-	template<typename N>		 const  MatBase<H, W , T>  operator- (const MatBase<H, W, N> &B)  const;// Matrix addition
+	template<typename N>		 		MatBase<H, W , T>& operator-=(const MatBase<H, W, N> &B);		// Matrix subtraction
+	template<typename N>		 const  MatBase<H, W , T>  operator- (const MatBase<H, W, N> &B)  const;// Matrix subtraction
 
 	template<typename N> 		 const 	Vec<H, T> 	   	   operator* (const Vec<W, N> &V) 	 	  const;// Vector matrix multiplication
 	template<typename Cast> 		   					   operator MatBase<H, W, Cast> () 		  const;
@@ -477,8 +477,8 @@ public:
 	template<typename N>		 const	Mat<H, W , T>  operator* (const N &r) 			  const {return (MatBase<H, W, T>)(*this) *  r;}					// Scalar multiplication
 	template<typename N>		 		Mat<H, W , T>& operator+=(const Mat<H, W , N> &B)		{return (MatBase<H, W, T>)(*this) += (MatBase<H, W , N>)B;} // Matrix addition
 	template<typename N>		 const  Mat<H, W , T>  operator+ (const Mat<H, W , N> &B) const	{return (MatBase<H, W, T>)(*this) +  (MatBase<H, W , N>)B;}	// Matrix addition
-	template<typename N>		 		Mat<H, W , T>& operator-=(const Mat<H, W , N> &B)		{return (MatBase<H, W, T>)(*this) -= (MatBase<H, W , N>)B;}	// Matrix addition
-	template<typename N>		 const  Mat<H, W , T>  operator- (const Mat<H, W , N> &B) const	{return (MatBase<H, W, T>)(*this) -  (MatBase<H, W , N>)B;}	// Matrix addition
+	template<typename N>		 		Mat<H, W , T>& operator-=(const Mat<H, W , N> &B)		{return (MatBase<H, W, T>)(*this) -= (MatBase<H, W , N>)B;}	// Matrix subtraction
+	template<typename N>		 const  Mat<H, W , T>  operator- (const Mat<H, W , N> &B) const	{return (MatBase<H, W, T>)(*this) -  (MatBase<H, W , N>)B;}	// Matrix subtraction
 
 										Mat<H, W , T>  Transpose(void) 					  const {return (MatBase<H, W, T>)(*this).Transpose();}
 
@@ -507,8 +507,8 @@ public:
 	template<typename N> const	Mat<H, H, T>  operator* (const N &r) 			const 	{return (MatBase<H, H, T>)(*this) *  r;}					// Scalar multiplication
 	template<typename N> 		Mat<H, H, T>& operator+=(const Mat<H, H, N> &B)			{return (MatBase<H, H, T>)(*this) += (MatBase<H, H, N>)B;}	// Matrix addition
 	template<typename N> const  Mat<H, H, T>  operator+ (const Mat<H, H, N> &B) const	{return (MatBase<H, H, T>)(*this) +  (MatBase<H, H, N>)B;}	// Matrix addition
-	template<typename N> 		Mat<H, H, T>& operator-=(const Mat<H, H, N> &B)			{return (MatBase<H, H, T>)(*this) -= (MatBase<H, H, N>)B;}	// Matrix addition
-	template<typename N> const  Mat<H, H, T>  operator- (const Mat<H, H, N> &B) const	{return (MatBase<H, H, T>)(*this) -  (MatBase<H, H, N>)B;}	// Matrix addition
+	template<typename N> 		Mat<H, H, T>& operator-=(const Mat<H, H, N> &B)			{return (MatBase<H, H, T>)(*this) -= (MatBase<H, H, N>)B;}	// Matrix subtraction
+	template<typename N> const  Mat<H, H, T>  operator- (const Mat<H, H, N> &B) const	{return (MatBase<H, H, T>)(*this) -  (MatBase<H, H, N>)B;}	// Matrix subtraction
 	template<typename Cast> 		   		  operator Mat<H, H, Cast> () 	  	const 	{return (Mat<H, H, Cast>)((MatBase<H, H, T>)(*this));}
 	template<typename N> const 	Vec<H, T> 	  operator* (const Vec<H, N> &V) 	const	{return (MatBase<H, H, T>)(*this) * V;}						// Vector matrix multiplication
 
@@ -681,8 +681,8 @@ public:
 	template<typename N> const	Mat<1, 1, T>  operator* (const N &r) 			const 	{return (MatBase<1, 1, T>)(*this) *  r;}					// Scalar multiplication
 	template<typename N> 		Mat<1, 1, T>& operator+=(const Mat<1, 1, N> &B)			{return (MatBase<1, 1, T>)(*this) += (MatBase<1, 1, N>)B;}	// Matrix addition
 	template<typename N> const  Mat<1, 1, T>  operator+ (const Mat<1, 1, N> &B) const	{return (MatBase<1, 1, T>)(*this) +  (MatBase<1, 1, N>)B;}	// Matrix addition
-	template<typename N> 		Mat<1, 1, T>& operator-=(const Mat<1, 1, N> &B)			{return (MatBase<1, 1, T>)(*this) -= (MatBase<1, 1, N>)B;}	// Matrix addition
-	template<typename N> const  Mat<1, 1, T>  operator- (const Mat<1, 1, N> &B) const	{return (MatBase<1, 1, T>)(*this) -  (MatBase<1, 1, N>)B;}	// Matrix addition
+	template<typename N> 		Mat<1, 1, T>& operator-=(const Mat<1, 1, N> &B)			{return (MatBase<1, 1, T>)(*this) -= (MatBase<1, 1, N>)B;}	// Matrix subtraction
+	template<typename N> const  Mat<1, 1, T>  operator- (const Mat<1, 1, N> &B) const	{return (MatBase<1, 1, T>)(*this) -  (MatBase<1, 1, N>)B;}	// Matrix subtraction
 								Mat<1, 1, T>  Transpose(void) 					const 	{return (MatBase<1, 1, T>)(*this).Transpose();}
 
 	Mat<1, 1, T> SubMatrix(const unsigned int i, const unsigned int j) const;
