@@ -29,10 +29,6 @@ SOFTWARE.
 #include <cmath>
 #include <iostream>
 
-#define PI 3.14159265
-
-namespace MVH {
-
 /**
  * @brief Specifies if the angle is radian or degrees
  */
@@ -110,24 +106,6 @@ public:
 
 	~Vec(){}
 
-	// declarations
-
-	template<typename N = double> const Vec<S, T>  operator+ (const Vec<S, N> &U) const;
-	template<typename N = double> 		Vec<S, T>& operator+=(const Vec<S, N> &U);					
-	template<typename N = double> const Vec<S, T>  operator- (const Vec<S, N> &U) const;	
-	template<typename N = double> 		Vec<S, T>& operator-=(const Vec<S, N> &U);
-	template<typename N = double> 		double	   operator* (const Vec<S, N> &U) const;	// dot product
-	template<typename N = double> const Vec<S, T>  operator* (const N R)		  const;	// scalar
-	template<typename N = double> const Vec<S, T>  operator/ (const N R)		  const;	// scalar
-	template<typename N = double> 		Vec<S, T>& operator*=(const N R);					// scalar
-	template<typename N = double> 		Vec<S, T>& operator/=(const N R);					// scalar
-	template<int S2, 
-			 typename N = double> 	    Vec<S, T>& operator= (const Vec<S2, N> &U);	
-
-	template<typename N = double> 		bool 	   operator==(const Vec<S, N> &U) const;
-	template<typename N = double> 		bool 	   operator!=(const Vec<S, N> &U) const;
-	template<typename Cast> 		   			   operator Vec<S, Cast> () const;
-	
 	/** @brief Sets the value of element i
 	 *  @param i the index of the element
 	 *  @return T reference to the value of the element */
@@ -137,6 +115,30 @@ public:
 	 *  @return T the value of the element */
 	T operator[](int i) const {return Varr[i];}
 
+	// declarations
+
+	template<typename N = double> const Vec<S, T>  operator+ (const Vec<S, N> &U) const;
+	template<typename N = double> 		Vec<S, T>& operator+=(const Vec<S, N> &U);					
+	template<typename N = double> const Vec<S, T>  operator- (const Vec<S, N> &U) const;	
+	template<typename N = double> 		Vec<S, T>& operator-=(const Vec<S, N> &U);
+	template<typename N = double> 		Vec<S, T>& operator/=(const Vec<S, N> &U);			// vector
+	template<typename N = double> 		Vec<S, T>& operator*=(const Vec<S, N> &U);			// vector
+	template<typename N = double> const Vec<S, T>  operator/ (const Vec<S, N> &U) const;	// vector
+	template<typename N = double> const Vec<S, T>  operator* (const Vec<S, N> &U) const;	// vector
+	template<typename N = double> 		Vec<S, T>& operator/=(const N R);					// scalar
+	template<typename N = double> 		Vec<S, T>& operator*=(const N R);					// scalar
+	template<typename N = double> const Vec<S, T>  operator/ (const N R)		  const;	// scalar
+	template<typename N = double> const Vec<S, T>  operator* (const N R)		  const;	// scalar
+
+	template<int S2, 
+			 typename N = double> 	    Vec<S, T>& operator= (const Vec<S2, N> &U);	
+
+	template<typename N = double> 		bool 	   operator==(const Vec<S, N> &U) const;
+	template<typename N = double> 		bool 	   operator!=(const Vec<S, N> &U) const;
+	template<typename Cast> 		   			   operator Vec<S, Cast> () const;
+
+	template<typename N = double> 		double	   dotproduct(const Vec<S, N> &U) const;	// dot product
+	
 	double length() const;
 	double lengthsquared() const;
 	template<typename N = double> double distance(const Vec<S, N> &U) const;
@@ -150,7 +152,9 @@ public:
 		  Vec<3, T>  getRotated(const Quaternion& q) const;
 
 	void print();	
+
 };
+
 
 //? definitions
 
@@ -167,6 +171,7 @@ public:
 template<int S, typename T>
 template<typename N>
 Vec<S, T>& Vec<S, T>::operator+=(const Vec<S, N> &U){
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	for(unsigned int i = 0; i < S; Varr[i] += U.Varr[i], i++){}
 	return *this;
 }
@@ -183,6 +188,7 @@ Vec<S, T>& Vec<S, T>::operator+=(const Vec<S, N> &U){
 template<int S, typename T>
 template<typename N> 
 const Vec<S, T> Vec<S, T>::operator+(const Vec<S, N> &U) const{
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	return Vec<S, T>(*this) += U;
 }
 
@@ -201,6 +207,7 @@ const Vec<S, T> Vec<S, T>::operator+(const Vec<S, N> &U) const{
 template<int S, typename T>
 template<typename N>
 Vec<S, T>& Vec<S, T>::operator-=(const Vec<S, N> &U){
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	for(unsigned int i = 0; i < S; Varr[i] -= U.Varr[i], i++){}
 	return *this;
 }
@@ -218,10 +225,27 @@ Vec<S, T>& Vec<S, T>::operator-=(const Vec<S, N> &U){
 template<int S, typename T>
 template<typename N>
 const Vec<S, T> Vec<S, T>::operator-(const Vec<S, N> &U) const{
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	return Vec<S, T>(*this) -= U;
 }
 
 //! multiplication
+/**
+ * @brief Multiplies Vector V with Vector U inplace
+ * A * r = U
+ * @tparam S the size of the vector
+ * @tparam T the datatype of the vector
+ * @tparam N the datatype of vector U
+ * @param r the scalar value
+ * @return Vec<S, T>& reference to the scaled vector object
+ */
+template<int S, typename T>
+template<typename N>
+Vec<S, T>& Vec<S, T>::operator*=(const Vec<S, N> &U) {
+	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<S, T>");
+	for(unsigned int i = 0; i < S; Varr[i] *= U.Varr[i], i++){}
+	return *this;
+}
 
 /**
  * @brief Calculates the scalar of the vector object inplace
@@ -235,9 +259,25 @@ const Vec<S, T> Vec<S, T>::operator-(const Vec<S, N> &U) const{
 template<int S, typename T>
 template<typename N>
 Vec<S, T>& Vec<S, T>::operator*=(const N r){
-	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<T>");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	for(unsigned int i = 0; i < S; Varr[i] *= r, i++){}
 	return *this;
+}
+
+/**
+ * @brief Multiplies Vector V with Vector U
+ * A * r = U
+ * @tparam S the size of the vector
+ * @tparam T the datatype of the vector
+ * @tparam N the datatype of vector U
+ * @param r the scalar value
+ * @return Vec<S, T>& reference to the scaled vector object
+ */
+template<int S, typename T>
+template<typename N>
+const Vec<S, T> Vec<S, T>::operator*(const Vec<S, N> &U) const{
+	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<S, T>");
+	return Vec<S, T>(*this) *= U;
 }
 
 /**
@@ -252,11 +292,11 @@ Vec<S, T>& Vec<S, T>::operator*=(const N r){
 template<int S, typename T>
 template<typename N>
 const Vec<S, T> Vec<S, T>::operator*(const N r) const{
-	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<T>");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	return Vec<S, T>(*this) *= r;
 }
 
-
+//! right hand side operator
 /**
  * @brief Calculates the scalar of the vector object
  * r * A = U
@@ -269,12 +309,14 @@ const Vec<S, T> Vec<S, T>::operator*(const N r) const{
  */
 template<int S, typename T, typename N>
 const Vec<S, T> operator*(const N &r, const Vec<S, T> &V) {
-	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<T>");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	return Vec<S, T>(V) *= r;
 }
 
+//! division
+
 /**
- * @brief Calculates the dot product between the vector object and vector U
+ * @brief Divides vector V by vector U inplace
  * A * U = V 
  * @tparam S the size of the vector
  * @tparam T the datatype of the vector
@@ -284,44 +326,61 @@ const Vec<S, T> operator*(const N &r, const Vec<S, T> &V) {
  */
 template<int S, typename T>
 template<typename N>
-double Vec<S, T>::operator*(const Vec<S, N> &U) const{
-	T j = 0; 
-	for(unsigned int i = 0; i < S; j += Varr[i] * U.Varr[i], i++){}
-	return j;
+Vec<S, T>& Vec<S, T>::operator/=(const Vec<S, N> &U){
+	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<S, T>");
+	for(unsigned int i = 0; i < S; Varr[i] /= U.Varr[i], i++){}
+	return *this;
 }
 
 /**
- * @brief Calculates the scalar of the vector object inplace.
+ * @brief Calculates the scalar of the vector object inplace
  * A / r = U
  * @tparam S the size of the vector
  * @tparam T the datatype of the vector
- * @tparam N the datatype of vector U
+ * @tparam N the datatype of the scalar
  * @param r the scalar value
  * @return Vec<S, T>& reference to the scaled vector.
  */
 template<int S, typename T>
 template<typename N>
 Vec<S, T>& Vec<S, T>::operator/=(const N r){
-	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<T>");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	for(unsigned int i = 0; i < S; Varr[i] /= r, i++){}
 	return *this;
 }
 
 /**
- * @brief Calculates the scalar of the vector object vector
- * A / r = U
+ * @brief Divides vector V by vector U
+ * A * U = V 
  * @tparam S the size of the vector
  * @tparam T the datatype of the vector
  * @tparam N the datatype of vector U
+ * @param U the 2nd vector to calculate the dot product between
+ * @return double 
+ */
+template<int S, typename T>
+template<typename N>
+const Vec<S, T> Vec<S, T>::operator/(const Vec<S, N> &U) const{
+	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<S, T>");
+	return Vec<S, T>(*this) /= U;
+}
+
+/**
+ * @brief Calculates the scalar of the vector object
+ * A / r = U
+ * @tparam S the size of the vector
+ * @tparam T the datatype of the vector
+ * @tparam N the datatype of the scalar
  * @param r the scalar value
  * @return const Vec<S, T> the scaled vector.
  */
 template<int S, typename T>
 template<typename N>
 const Vec<S, T> Vec<S, T>::operator/(const N r) const{
-	static_assert(std::is_arithmetic<N>::value, "Type must be numeric or Vector<T>");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	return Vec<S, T>(*this) /= r;
 }
+
 
 //! logical
 /**
@@ -400,6 +459,24 @@ Vec<S, T>::operator Vec<S, Cast> () const{
 //! mathematical functions
 
 /**
+ * @brief Calculates the dot product between the vector object and vector U
+ * A * U = V 
+ * @tparam S the size of the vector
+ * @tparam T the datatype of the vector
+ * @tparam N the datatype of vector U
+ * @param U the 2nd vector to calculate the dot product between
+ * @return double 
+ */
+template<int S, typename T>
+template<typename N>
+double Vec<S, T>::dotproduct(const Vec<S, N> &U) const{
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
+	T j = 0; 
+	for(unsigned int i = 0; i < S; j += Varr[i] * U.Varr[i], i++){}
+	return j;
+}
+
+/**
  * @brief Calculates the length of the vector object but does not calculate the root of it.
  * V[i]^2 + V[i+1]^2 + ...
  * @tparam S the size of the vector
@@ -408,6 +485,7 @@ Vec<S, T>::operator Vec<S, Cast> () const{
  */
 template<int S, typename T>
 double Vec<S, T>::lengthsquared() const{
+	static_assert((std::is_arithmetic<T>::value), "Type must be numeric or Vector<S, T>");
 	double j = 0;
 	for(unsigned int i = 0; i < S; j += std::pow(Varr[i], 2), i++){}
 	return j;
@@ -440,7 +518,7 @@ template<AngleType degrees, typename N>
 double Vec<S, T>::angle(const Vec<S, N> &U) const{
 	return std::acos(
 		this->dotproduct(U) / std::sqrt(this->lengthsquared() * U.lengthsquared())
-	) * ((bool)degrees ? (180.0 / PI) : 1);
+	) * ((bool)degrees ? (180.0 / 3.14159265) : 1);
 }
 
 /**
@@ -457,6 +535,7 @@ template<int S, typename T>
 template<typename N>
 Vec<S, T> Vec<S, T>::crossproduct(const Vec<S, N> &U) const{
 	static_assert(S == 3 || S == 2, "Cross Product Vectors must be of size 2, 3");
+	static_assert((std::is_arithmetic<N>::value), "Type must be numeric or Vector<S, T>");
 	Vec<3, T> W({Varr[2]*U[3] - Varr[3]*U[2], 
 				 Varr[3]*U[1] - Varr[1]*U[3], 
 				 Varr[1]*U[2] - Varr[2]*U[1]}); 
@@ -633,7 +712,3 @@ const Vec<S, T> Vec<S, T>::getNormalized() const{
 	r.normalize();
 	return r;
 }
-
-}
-
-#undef PI 
