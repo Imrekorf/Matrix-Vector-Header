@@ -487,7 +487,7 @@ template<int S, typename T>
 double Vec<S, T>::lengthsquared() const{
 	static_assert((std::is_arithmetic<T>::value), "Type must be numeric or Vector<S, T>");
 	double j = 0;
-	for(unsigned int i = 0; i < S; j += std::pow(Varr[i], 2), i++){}
+	for(unsigned int i = 0; i < S; j += (Varr[i] * Varr[i]), i++){}
 	return j;
 }
 
