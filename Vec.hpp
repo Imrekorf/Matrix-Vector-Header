@@ -48,17 +48,18 @@ class Quaternion;
 template<int S, typename T = double>
 class Vec{
 public:
-	union
-	{
-		struct {
-			T x;
-			T y;
-			T z;
-			T w;
-		};
-		T Varr[S];
-	};
+	T Varr[S];
 
+	T x(void) const {return Varr[0];}
+	T y(void) const {return Varr[1];}
+	T z(void) const {return Varr[2];}
+	T w(void) const {return Varr[3];}
+
+	void x(const T v){Varr[0] = v;}
+	void y(const T v){Varr[1] = v;}
+	void z(const T v){Varr[2] = v;}
+	void w(const T v){Varr[3] = v;}
+	
 	Vec(){
 		for(unsigned int i = 0; i < S; i++){
 			Varr[i] = 0;
@@ -73,7 +74,8 @@ public:
 	 * @param Z The value for Z, default 0
 	 * @param W The value for W, default 0
 	 */
-	Vec(const T X, const T Y = 0, const T Z = 0, const T W = 0) : x(X), y(Y), z(Z), w(W){
+	Vec(const T X, const T Y = 0, const T Z = 0, const T W = 0){
+		x(X); y(Y); z(Z); w(W);
 		static_assert(std::is_arithmetic<T>::value, "Values must be numeric");
 		for (unsigned int i = 4; i < S; i++)
 		{
@@ -620,17 +622,17 @@ public:
 		//     (Q1 * Q2).y = (w1y2 - x1z2 + y1w2 + z1x2)
 		//     (Q1 * Q2).z = (w1z2 + x1y2 - y1x2 + z1w2
 		return Quaternion(
-			w*q.w - x*q.x - y*q.y - z*q.z,  // new w
-			w*q.x + x*q.w + y*q.z - z*q.y,  // new x
-			w*q.y - x*q.z + y*q.w + z*q.x,  // new y
-			w*q.z + x*q.y - y*q.x + z*q.w); // new z
+			w()*q.w() - x()*q.x() - y()*q.y() - z()*q.z(),  // new w
+			w()*q.x() + x()*q.w() + y()*q.z() - z()*q.y(),  // new x
+			w()*q.y() - x()*q.z() + y()*q.w() + z()*q.x(),  // new y
+			w()*q.z() + x()*q.y() - y()*q.x() + z()*q.w()); // new z
 	}
 	/**
 	 * @brief creates a conjugated version of the quaternion
 	 * @return Quaternion the conjugated quaternion
 	 */
 	const Quaternion getConjugate() const {
-		return Quaternion(w, -x, -y, -z);
+		return Quaternion(w(), -x(), -y(), -z());
 	}
 };
 
@@ -655,7 +657,7 @@ Vec<3, T>& Vec<S, T>::rotate(const Quaternion& q){
 	// - q is the orientation quaternion
 	// - P_in is the input vector (a*aReal)
 	// - conj(q) is the conjugate of the orientation quaternion (q=[w,x,y,z], q*=[w,-x,-y,-z])
-	Quaternion p(0, x, y, z);
+	Quaternion p(0, x(), y(), z());
 
 	// quaternion multiplication: q * p, stored back in p
 	p = q.getHProduct(p);
@@ -664,9 +666,9 @@ Vec<3, T>& Vec<S, T>::rotate(const Quaternion& q){
 	p = p.getHProduct(q.getConjugate());
 
 	// p quaternion is now [0, x', y', z']
-	x = p.x;
-	y = p.y;
-	z = p.z;
+	x(p.x());
+	y(p.y());
+	z(p.z());
 	return *this;
 }
 
@@ -681,7 +683,7 @@ Vec<3, T>& Vec<S, T>::rotate(const Quaternion& q){
 template<int S, typename T>
 Vec<3, T> Vec<S, T>::getRotated(const Quaternion& q) const{
 	static_assert(S == 3, "Quaternion rotation needs a vector of size 3");
-	Vec<3, T> r(x, y, z);
+	Vec<3, T> r(x(), y(), z());
 	r.rotate(q);
 	return r; 
 }
